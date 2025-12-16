@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harold Mbati Foundation</title>
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Harold Mbati Foundation - Empowering communities through education, sports, and sustainable development in Kenya">
+    <meta name="keywords" content="Harold Mbati, Foundation, Kenya, Education, Sports, Community Development, Luanda Constituency">
+    <meta name="author" content="Harold Mbati Foundation">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0f172a',    // Dark blue
+                        secondary: '#1e40af',   // Royal blue
+                        accent: '#f59e0b',      // Amber gold
+                        dark: '#0a0f1e',
+                        light: '#f8fafc'
+                    },
+                    fontFamily: {
+                        'heading': ['Montserrat', 'sans-serif'],
+                        'body': ['Poppins', 'sans-serif'],
+                    },
+                    animation: {
+                        'slide-down': 'slideDown 0.3s ease-out',
+                        'fade-in': 'fadeIn 0.5s ease-out',
+                        'pulse-slow': 'pulse 3s infinite',
+                        'float': 'float 3s ease-in-out infinite',
+                        'shine': 'shine 3s ease-in-out infinite',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        @keyframes shine {
+            0% { box-shadow: 0 0 5px rgba(245, 158, 11, 0.3); }
+            50% { box-shadow: 0 0 20px rgba(245, 158, 11, 0.6); }
+            100% { box-shadow: 0 0 5px rgba(245, 158, 11, 0.3); }
+        }
+        
+        .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            bottom: -5px;
+            left: 0;
+            background: linear-gradient(90deg, #f59e0b, #fbbf24);
+            border-radius: 2px;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .mobile-menu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out;
+        }
+        
+        .mobile-menu.open {
+            max-height: 500px;
+        }
+        
+        .donate-btn {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4);
+        }
+        
+        .donate-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(245, 158, 11, 0.6);
+            animation: shine 2s infinite;
+        }
+        
+        .header-glow {
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .logo-container {
+            background: linear-gradient(135deg, #1e293b, #0f172a);
+            border-radius: 12px;
+            padding: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .logo-container:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(245, 158, 11, 0.4);
+        }
+    </style>
+</head>
+<body class="font-body bg-light text-dark">
+    
+    <!-- Header Section -->
+        <!-- Header Section -->
+    <header id="header" class="sticky top-0 z-50 bg-primary text-white header-glow animate-slide-down">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <!-- Logo with Image and Text -->
+                <a href="index.html" class="flex items-center space-x-3 lg:space-x-4">
+                    <div class="logo-container animate-float">
+                        <!-- Replace with your actual logo.png -->
+                        <img src="logo.png" alt="Harold Mbati Foundation Logo" class="h-10 lg:h-12 w-auto">
+                    </div>
+                    <!-- Text that shows next to logo on ALL devices -->
+                    <div class="flex flex-col">
+                        <span class="font-heading text-lg lg:text-2xl font-bold tracking-tight">Harold Mbati</span>
+                        <span class="font-heading text-xs lg:text-sm font-semibold text-accent tracking-wider">FOUNDATION</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden lg:flex items-center space-x-2">
+                    <a href="index.html" class="nav-link px-5 py-3 font-medium text-gray-200 hover:text-white transition-colors">
+                        <i class="fas fa-home mr-2"></i>Home
+                    </a>
+                    <a href="about.html" class="nav-link px-5 py-3 font-medium text-gray-200 hover:text-white transition-colors">
+                        <i class="fas fa-book-open mr-2"></i>Our Story
+                    </a>
+                    <a href="work.html" class="nav-link px-5 py-3 font-medium text-gray-200 hover:text-white transition-colors">
+                        <i class="fas fa-hands-helping mr-2"></i>Our Work
+                    </a>
+                    <a href="involve.html" class="nav-link px-5 py-3 font-medium text-gray-200 hover:text-white transition-colors">
+                        <i class="fas fa-users mr-2"></i>Get Involved
+                    </a>
+                    <a href="connect.html" class="nav-link px-5 py-3 font-medium text-gray-200 hover:text-white transition-colors">
+                        <i class="fas fa-envelope mr-2"></i>Connect
+                    </a>
+                    
+                    <!-- Donate Button -->
+                    <a href="donate.html" class="donate-btn ml-4 px-8 py-3 rounded-full text-white font-bold text-lg flex items-center">
+                        <i class="fas fa-heart mr-3"></i>DONATE
+                    </a>
+                </nav>
+
+                <!-- Mobile Menu Button -->
+                <div class="flex items-center lg:hidden">
+                    <button id="mobileMenuButton" class="text-2xl text-accent hover:text-yellow-300 transition-colors">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Navigation Menu -->
+            <div id="mobileMenu" class="mobile-menu lg:hidden bg-secondary rounded-lg shadow-xl mt-2">
+                <div class="py-4 space-y-1">
+                    <a href="index.html" class="block px-6 py-4 font-medium text-white hover:bg-accent/20 hover:text-accent transition-colors border-l-4 border-transparent hover:border-accent">
+                        <i class="fas fa-home mr-3"></i>Home
+                    </a>
+                    <a href="about.html" class="block px-6 py-4 font-medium text-white hover:bg-accent/20 hover:text-accent transition-colors border-l-4 border-transparent hover:border-accent">
+                        <i class="fas fa-book-open mr-3"></i>Our Story
+                    </a>
+                    <a href="work.html" class="block px-6 py-4 font-medium text-white hover:bg-accent/20 hover:text-accent transition-colors border-l-4 border-transparent hover:border-accent">
+                        <i class="fas fa-hands-helping mr-3"></i>Our Work
+                    </a>
+                    <a href="involve.html" class="block px-6 py-4 font-medium text-white hover:bg-accent/20 hover:text-accent transition-colors border-l-4 border-transparent hover:border-accent">
+                        <i class="fas fa-users mr-3"></i>Get Involved
+                    </a>
+                    <a href="connect.html" class="block px-6 py-4 font-medium text-white hover:bg-accent/20 hover:text-accent transition-colors border-l-4 border-transparent hover:border-accent">
+                        <i class="fas fa-envelope mr-3"></i>Connect
+                    </a>
+                    <div class="px-6 py-4">
+                        <a href="donate.html" class="donate-btn block text-center px-6 py-4 rounded-full text-white font-bold text-lg">
+                            <i class="fas fa-heart mr-2"></i>DONATE NOW
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Scroll Progress Bar -->
+        <div class="h-1.5 w-full bg-gray-800">
+            <div id="scrollProgress" class="h-full bg-gradient-to-r from-accent to-yellow-300" style="width: 0%"></div>
+        </div>
+    </header>
+
+    <!-- Main Content - Empty for now -->
+    <main class="min-h-screen">
+        <!-- Content will be added section by section -->
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="bg-dark text-white pt-12 pb-6">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+                <!-- Foundation Info -->
+                <div class="animate-fade-in">
+                    <div class="flex items-center space-x-3 mb-6">
+                        <div class="bg-gradient-to-br from-primary to-secondary p-3 rounded-xl">
+                            <img src="logo.png" alt="Logo" class="h-10 w-auto">
+                        </div>
+                        <div>
+                            <h3 class="font-heading text-2xl font-bold">Harold Mbati</h3>
+                            <p class="font-heading text-accent font-semibold">FOUNDATION</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 mb-6">Empowering marginalized communities in Kenya through education, sports, and sustainable development programs.</p>
+                    
+                    <!-- Newsletter Signup -->
+                    <div class="mb-6">
+                        <h4 class="font-heading font-semibold mb-3 text-white">Stay Updated</h4>
+                        <form class="flex" id="newsletterForm">
+                            <input type="email" placeholder="Your email" class="flex-grow px-4 py-3 rounded-l-lg text-dark focus:outline-none focus:ring-2 focus:ring-accent" required>
+                            <button type="submit" class="bg-accent hover:bg-yellow-600 px-5 py-3 rounded-r-lg transition-colors">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="animate-fade-in" style="animation-delay: 0.1s">
+                    <h4 class="font-heading text-xl font-semibold mb-6 text-white">Quick Links</h4>
+                    <ul class="space-y-3">
+                        <li><a href="index.html" class="text-gray-300 hover:text-accent transition-colors flex items-center group">
+                            <i class="fas fa-chevron-right text-xs mr-3 text-accent group-hover:translate-x-1 transition-transform"></i> Home
+                        </a></li>
+                        <li><a href="about.html" class="text-gray-300 hover:text-accent transition-colors flex items-center group">
+                            <i class="fas fa-chevron-right text-xs mr-3 text-accent group-hover:translate-x-1 transition-transform"></i> Our Story
+                        </a></li>
+                        <li><a href="work.html" class="text-gray-300 hover:text-accent transition-colors flex items-center group">
+                            <i class="fas fa-chevron-right text-xs mr-3 text-accent group-hover:translate-x-1 transition-transform"></i> Our Work
+                        </a></li>
+                        <li><a href="involve.html" class="text-gray-300 hover:text-accent transition-colors flex items-center group">
+                            <i class="fas fa-chevron-right text-xs mr-3 text-accent group-hover:translate-x-1 transition-transform"></i> Get Involved
+                        </a></li>
+                        <li><a href="connect.html" class="text-gray-300 hover:text-accent transition-colors flex items-center group">
+                            <i class="fas fa-chevron-right text-xs mr-3 text-accent group-hover:translate-x-1 transition-transform"></i> Connect
+                        </a></li>
+                    </ul>
+                </div>
+
+                <!-- Programs -->
+                <div class="animate-fade-in" style="animation-delay: 0.2s">
+                    <h4 class="font-heading text-xl font-semibold mb-6 text-white">Our Programs</h4>
+                    <ul class="space-y-3">
+                        <li><a href="work.html#education" class="text-gray-300 hover:text-accent transition-colors flex items-center group">
+                            <div class="w-8 h-8 rounded-full bg-primary/50 flex items-center justify-center mr-3 group-hover:bg-accent/20 transition-colors">
+                                <i class="fas fa-graduation-cap text-sm"></i>
+                            </div>
+                            Education
+                        </a></li>
+                        <li><a href="work.html#sports" class="text-gray-300 hover:text-accent transition-colors flex items-center group">
+                            <div class="w-8 h-8 rounded-full bg-primary/50 flex items-center justify-center mr-3 group-hover:bg-accent/20 transition-colors">
+                                <i class="fas fa-futbol text-sm"></i>
+                            </div>
+                            Champions Cup
+                        </a></li>
+                        <li><a href="work.html#health" class="text-gray-300 hover:text-accent transition-colors flex items-center group">
+                            <div class="w-8 h-8 rounded-full bg-primary/50 flex items-center justify-center mr-3 group-hover:bg-accent/20 transition-colors">
+                                <i class="fas fa-heartbeat text-sm"></i>
+                            </div>
+                            Health & Wellness
+                        </a></li>
+                        <li><a href="work.html#community" class="text-gray-300 hover:text-accent transition-colors flex items-center group">
+                            <div class="w-8 h-8 rounded-full bg-primary/50 flex items-center justify-center mr-3 group-hover:bg-accent/20 transition-colors">
+                                <i class="fas fa-users text-sm"></i>
+                            </div>
+                            Community Outreach
+                        </a></li>
+                    </ul>
+                    
+                    <!-- Donate CTA in Footer -->
+                    <div class="mt-8">
+                        <a href="donate.html" class="inline-flex items-center justify-center donate-btn px-6 py-4 rounded-full text-white font-bold w-full">
+                            <i class="fas fa-gift mr-3"></i>Make a Difference
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="animate-fade-in" style="animation-delay: 0.3s">
+                    <h4 class="font-heading text-xl font-semibold mb-6 text-white">Contact Us</h4>
+                    <ul class="space-y-4">
+                        <li class="flex items-start group">
+                            <div class="w-10 h-10 rounded-lg bg-primary/50 flex items-center justify-center mr-3 group-hover:bg-accent/20 transition-colors">
+                                <i class="fas fa-map-marker-alt text-accent"></i>
+                            </div>
+                            <span class="text-gray-300 pt-2">Luanda Constituency, Kenya</span>
+                        </li>
+                        <li class="flex items-center group">
+                            <div class="w-10 h-10 rounded-lg bg-primary/50 flex items-center justify-center mr-3 group-hover:bg-accent/20 transition-colors">
+                                <i class="fas fa-phone text-accent"></i>
+                            </div>
+                            <span class="text-gray-300">+254 7XX XXX XXX</span>
+                        </li>
+                        <li class="flex items-center group">
+                            <div class="w-10 h-10 rounded-lg bg-primary/50 flex items-center justify-center mr-3 group-hover:bg-accent/20 transition-colors">
+                                <i class="fab fa-whatsapp text-accent"></i>
+                            </div>
+                            <span class="text-gray-300">WhatsApp Available</span>
+                        </li>
+                        <li class="flex items-center group">
+                            <div class="w-10 h-10 rounded-lg bg-primary/50 flex items-center justify-center mr-3 group-hover:bg-accent/20 transition-colors">
+                                <i class="fas fa-envelope text-accent"></i>
+                            </div>
+                            <span class="text-gray-300">info@hmfoundation.org</span>
+                        </li>
+                    </ul>
+                    
+                    <!-- Social Media -->
+                    <div class="mt-8">
+                        <h5 class="font-heading font-semibold mb-4 text-white">Follow Our Journey</h5>
+                        <div class="flex space-x-3">
+                            <a href="#" class="bg-primary hover:bg-blue-700 p-3 rounded-xl transition-all transform hover:-translate-y-1 hover:shadow-lg">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#" class="bg-primary hover:bg-pink-600 p-3 rounded-xl transition-all transform hover:-translate-y-1 hover:shadow-lg">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="#" class="bg-primary hover:bg-blue-400 p-3 rounded-xl transition-all transform hover:-translate-y-1 hover:shadow-lg">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="bg-primary hover:bg-red-600 p-3 rounded-xl transition-all transform hover:-translate-y-1 hover:shadow-lg">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                            <a href="#" class="bg-primary hover:bg-green-500 p-3 rounded-xl transition-all transform hover:-translate-y-1 hover:shadow-lg">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Copyright & Bottom Bar -->
+            <div class="border-t border-gray-800 pt-6 mt-8 animate-fade-in">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <div class="mb-4 md:mb-0">
+                        <p class="text-gray-400 text-center md:text-left">
+                            &copy; 2023-<span id="currentYear"></span> Harold Mbati Foundation. All rights reserved.
+                        </p>
+                    </div>
+                    <div class="flex flex-wrap justify-center gap-4 text-sm text-gray-400">
+                        <a href="#" class="hover:text-accent transition-colors hover:underline">Privacy Policy</a>
+                        <span class="text-gray-600">•</span>
+                        <a href="#" class="hover:text-accent transition-colors hover:underline">Terms of Service</a>
+                        <span class="text-gray-600">•</span>
+                        <a href="#" class="hover:text-accent transition-colors hover:underline">Annual Reports</a>
+                        <span class="text-gray-600">•</span>
+                        <a href="#" class="hover:text-accent transition-colors hover:underline">Transparency</a>
+                    </div>
+                </div>
+                <div class="text-center mt-6 text-gray-500 text-sm">
+                    <p>Empowering communities, transforming lives. Registered Non-Profit Organization in Kenya.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Interactivity -->
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobileMenuButton').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('open');
+            this.innerHTML = mobileMenu.classList.contains('open') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+
+        // Scroll progress bar
+        window.addEventListener('scroll', function() {
+            const scrollTop = window.pageYOffset;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            document.getElementById('scrollProgress').style.width = scrollPercent + '%';
+        });
+
+        // Set current year in footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Newsletter form submission (frontend only)
+        document.getElementById('newsletterForm')?.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = this.querySelector('input[type="email"]').value;
+            alert(`Thank you for subscribing with: ${email}\n(This is a frontend demo - backend integration will be added later)`);
+            this.reset();
+        });
+
+        // Add active class to current page link
+        const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+        const navLinks = document.querySelectorAll('.nav-link, .mobile-menu a');
+        navLinks.forEach(link => {
+            const href = link.getAttribute('href');
+            if(href && href.includes(currentPage.replace('.html', ''))) {
+                link.classList.add('text-accent', 'font-bold');
+                link.classList.remove('text-gray-200');
+                
+                // Add gold border for active link
+                if(link.classList.contains('nav-link')) {
+                    link.style.setProperty('--after-width', '100%');
+                }
+            }
+        });
+
+        // Logo hover effect
+        const logoContainer = document.querySelector('.logo-container');
+        if(logoContainer) {
+            logoContainer.addEventListener('mouseenter', function() {
+                this.style.animation = 'shine 1.5s ease-in-out';
+            });
+            
+            logoContainer.addEventListener('mouseleave', function() {
+                this.style.animation = 'float 3s ease-in-out infinite';
+            });
+        }
+
+        // Animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    entry.target.classList.add('animate-fade-in');
+                    entry.target.style.opacity = '1';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all footer sections
+        document.querySelectorAll('footer > div > div > div').forEach(section => {
+            section.style.opacity = '0';
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
