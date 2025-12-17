@@ -735,18 +735,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
                 height: 100vh;
                 width: 280px;
             }
-            
+
             .sidebar.mobile-open {
                 transform: translateX(0);
             }
-            
+
             .mobile-menu-btn {
                 display: block;
             }
-            
+
             .data-table {
                 display: block;
                 overflow-x: auto;
+                min-width: 600px;
+            }
+
+            .table-responsive {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                margin: 0 -1rem;
+                padding: 0 1rem;
             }
         }
         
@@ -1074,7 +1082,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
 
                     <!-- Activities Table -->
                     <div class="dashboard-card overflow-hidden">
-                        <div class="table-responsive">
+                        <div class="overflow-x-auto">
                             <table class="data-table">
                                 <thead>
                                     <tr>
@@ -1210,7 +1218,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
                     
                     <!-- Donations Table -->
                     <div class="dashboard-card overflow-hidden">
-                        <div class="table-responsive">
+                        <div class="overflow-x-auto">
                             <table class="data-table">
                                 <thead>
                                     <tr>

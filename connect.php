@@ -12,39 +12,49 @@
             </p>
         </div>
 
-        <div class="max-w-4xl mx-auto">
+        <div class="max-w-6xl mx-auto">
             <!-- Contact Information Cards -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-                <!-- Office Info -->
-                <div class="bg-white rounded-2xl p-8 shadow-xl text-center">
-                    <div class="w-16 h-16 bg-accent/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <i class="fas fa-map-marker-alt text-accent text-2xl"></i>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+                <!-- Office Hours -->
+                <div class="bg-white rounded-2xl p-6 shadow-xl text-center">
+                    <div class="w-12 h-12 bg-accent/20 rounded-full flex items-center justify-center mx-auto mb-3">
+                        <i class="fas fa-clock text-accent text-xl"></i>
                     </div>
-                    <h3 class="font-heading text-xl font-bold text-primary mb-2">Our Location</h3>
-                    <p class="text-gray-600">Luanda Constituency<br>Kenya</p>
+                    <h3 class="font-heading text-lg font-bold text-primary mb-2">Office Hours</h3>
+                    <p class="text-gray-600 text-sm">Mon - Fri: 8:00 AM - 5:00 PM</p>
                 </div>
 
-                <div class="bg-white rounded-2xl p-8 shadow-xl text-center">
-                    <div class="w-16 h-16 bg-accent/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <i class="fas fa-clock text-accent text-2xl"></i>
+                <!-- Location -->
+                <div class="bg-white rounded-2xl p-6 shadow-xl text-center">
+                    <div class="w-12 h-12 bg-accent/20 rounded-full flex items-center justify-center mx-auto mb-3">
+                        <i class="fas fa-map-marker-alt text-accent text-xl"></i>
                     </div>
-                    <h3 class="font-heading text-xl font-bold text-primary mb-2">Office Hours</h3>
-                    <p class="text-gray-600">Monday - Friday<br>8:00 AM - 5:00 PM<br>East Africa Time (EAT)</p>
+                    <h3 class="font-heading text-lg font-bold text-primary mb-2">Location</h3>
+                    <p class="text-gray-600 text-sm">Luanda Constituency, Kenya</p>
                 </div>
 
-                <div class="bg-white rounded-2xl p-8 shadow-xl text-center">
-                    <div class="w-16 h-16 bg-accent/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <i class="fas fa-phone text-accent text-2xl"></i>
+                <!-- Timezone -->
+                <div class="bg-white rounded-2xl p-6 shadow-xl text-center">
+                    <div class="w-12 h-12 bg-accent/20 rounded-full flex items-center justify-center mx-auto mb-3">
+                        <i class="fas fa-globe text-accent text-xl"></i>
                     </div>
-                    <h3 class="font-heading text-xl font-bold text-primary mb-2">Phone</h3>
-                    <p class="text-gray-600">+254 768 927895</p>
+                    <h3 class="font-heading text-lg font-bold text-primary mb-2">Timezone</h3>
+                    <p class="text-gray-600 text-sm">East Africa Time (EAT)</p>
+                </div>
+
+                <!-- Quote -->
+                <div class="bg-gradient-to-br from-accent to-yellow-500 rounded-2xl p-6 shadow-xl text-center text-white md:col-span-2 lg:col-span-1">
+                    <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-3">
+                        <i class="fas fa-quote-left text-white text-xl"></i>
+                    </div>
+                    <p class="text-sm italic opacity-90">"Let's work together to create lasting impact in our communities. Your voice matters to us."</p>
                 </div>
             </div>
 
             <!-- Contact Form -->
             <div class="bg-white rounded-2xl p-8 md:p-12 shadow-xl">
                 <h2 class="font-heading text-2xl font-bold text-primary mb-8 text-center">Send us a Detailed Message</h2>
-                <form class="space-y-6">
+                <form id="contact-form" method="post" action="" class="space-y-6">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
                             <label class="block text-gray-700 mb-2">Full Name *</label>
@@ -62,7 +72,7 @@
                         </div>
                         <div>
                             <label class="block text-gray-700 mb-2">Subject *</label>
-                            <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent" required>
+                            <select name="subject" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent" required>
                                 <option value="">Select a topic</option>
                                 <option value="partnership">Partnership Inquiry</option>
                                 <option value="volunteer">Volunteer Opportunities</option>
@@ -81,93 +91,89 @@
                         <input type="checkbox" id="newsletter" class="mr-3">
                         <label for="newsletter" class="text-gray-600">Subscribe to our newsletter for updates</label>
                     </div>
-                    <button type="submit" class="w-full bg-accent text-white py-4 rounded-lg hover:bg-yellow-600 transition-colors font-semibold flex items-center justify-center">
+                    <button type="button" id="submit-btn" class="w-full bg-accent text-white py-4 rounded-lg hover:bg-yellow-600 transition-colors font-semibold flex items-center justify-center">
                         <span>Send Message</span>
                         <i class="fas fa-paper-plane ml-2"></i>
                     </button>
                 </form>
-            </div>
-
-            <!-- Additional Contact Methods -->
-            <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- Social Media -->
-                <div class="bg-white rounded-2xl p-8 shadow-xl">
-                    <h3 class="font-heading text-xl font-bold text-primary mb-6">Follow Our Journey</h3>
-                    <div class="grid grid-cols-2 gap-4">
-                        <a href="#" class="flex items-center p-4 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors">
-                            <i class="fab fa-facebook-f text-blue-600 text-2xl mr-3"></i>
-                            <span class="font-semibold text-blue-700">Facebook</span>
-                        </a>
-                        <a href="#" class="flex items-center p-4 bg-pink-50 rounded-lg hover:bg-pink-100 transition-colors">
-                            <i class="fab fa-instagram text-pink-600 text-2xl mr-3"></i>
-                            <span class="font-semibold text-pink-700">Instagram</span>
-                        </a>
-                        <a href="#" class="flex items-center p-4 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors">
-                            <i class="fab fa-twitter text-blue-400 text-2xl mr-3"></i>
-                            <span class="font-semibold text-blue-500">Twitter</span>
-                        </a>
-                        <a href="#" class="flex items-center p-4 bg-red-50 rounded-lg hover:bg-red-100 transition-colors">
-                            <i class="fab fa-youtube text-red-600 text-2xl mr-3"></i>
-                            <span class="font-semibold text-red-700">YouTube</span>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Newsletter -->
-                <div class="bg-gradient-to-r from-accent to-yellow-500 rounded-2xl p-8 text-white">
-                    <h3 class="font-heading text-xl font-bold mb-4">Stay Updated</h3>
-                    <p class="mb-6 opacity-90">Subscribe to our newsletter for the latest updates on our programs and impact.</p>
-                    <form class="flex">
-                        <input type="email" placeholder="Your email address" class="flex-grow px-4 py-3 rounded-l-lg text-dark focus:outline-none focus:ring-2 focus:ring-white/50" required>
-                        <button type="submit" class="bg-primary px-6 py-3 rounded-r-lg hover:bg-primary/90 transition-colors">
-                            <i class="fas fa-envelope"></i>
-                        </button>
-                    </form>
-                </div>
             </div>
         </div>
     </div>
 </section>
 
 <script>
-// Contact form submission
+console.log('Contact form script loaded');
+
 document.addEventListener('DOMContentLoaded', function() {
-    const contactForm = document.querySelector('#connect form');
+    console.log('DOMContentLoaded fired');
+    const contactForm = document.querySelector('#contact-form');
+    const submitBtn = document.querySelector('#submit-btn');
+    console.log('Contact form found:', contactForm);
+    console.log('Submit button found:', submitBtn);
 
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
+    if (submitBtn) {
+        submitBtn.addEventListener('click', function(e) {
+            console.log('Submit button clicked');
 
-            const formData = new FormData(this);
+            // Validate form
+            const requiredFields = contactForm.querySelectorAll('[required]');
+            let isValid = true;
+            requiredFields.forEach(field => {
+                if (!field.value.trim()) {
+                    field.style.borderColor = 'red';
+                    isValid = false;
+                } else {
+                    field.style.borderColor = '';
+                }
+            });
+
+            if (!isValid) {
+                showNotification('Please fill in all required fields.', 'error');
+                return;
+            }
+
+            const formData = new FormData(contactForm);
+            console.log('Form data entries:');
+            for (let [key, value] of formData.entries()) {
+                console.log(key + ': ' + value);
+            }
 
             // Show loading state
-            const submitBtn = this.querySelector('button[type="submit"]');
             const originalText = submitBtn.innerHTML;
             submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i><span>Sending...</span>';
             submitBtn.disabled = true;
 
-            // Add action to form data
-            const data = new FormData(this);
-            data.append('action', 'add_contact');
-
-            fetch('admin.php', {
+            fetch('contact_handler.php', {
                 method: 'POST',
-                body: data
+                body: formData
             })
-            .then(response => response.json())
+            .then(response => {
+                console.log('Response status:', response.status);
+                console.log('Response headers:', response.headers);
+                return response.text().then(text => {
+                    console.log('Response text:', text);
+                    try {
+                        return JSON.parse(text);
+                    } catch (e) {
+                        console.error('JSON parse error:', e);
+                        throw new Error('Invalid response format');
+                    }
+                });
+            })
             .then(result => {
+                console.log('Parsed result:', result);
                 if (result.success) {
                     // Show success message
-                    showNotification('Your message has been sent successfully! We will get back to you within 24 hours.', 'success');
+                    showNotification(result.message || 'Your message has been sent successfully! We will get back to you within 24 hours.', 'success');
 
                     // Reset form
-                    this.reset();
+                    contactForm.reset();
                 } else {
-                    showNotification('Sorry, there was an error sending your message. Please try again.', 'error');
+                    showNotification(result.error || 'Sorry, there was an error sending your message. Please try again.', 'error');
                 }
             })
             .catch(error => {
-                console.error('Error:', error);
+                console.error('Fetch error:', error);
                 showNotification('Sorry, there was an error sending your message. Please try again.', 'error');
             })
             .finally(() => {

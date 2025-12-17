@@ -849,8 +849,44 @@
             }
         }
     </style>
+
+    <!-- Toast Notification Styles -->
+    <style>
+        .toast {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 9999;
+            padding: 1rem 1.5rem;
+            border-radius: 0.5rem;
+            color: white;
+            font-weight: 500;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            transform: translateX(120%);
+            transition: transform 0.3s ease;
+            max-width: 400px;
+        }
+
+        .toast.show {
+            transform: translateX(0);
+        }
+
+        .toast.success {
+            background: linear-gradient(135deg, #10b981, #34d399);
+        }
+
+        .toast.error {
+            background: linear-gradient(135deg, #ef4444, #f87171);
+        }
+    </style>
 </head>
 <body class="font-body bg-light text-dark prevent-scroll">
+    <!-- Toast Notification -->
+    <div id="toast" class="toast">
+        <i class="fas fa-check-circle mr-2"></i>
+        <span id="toastMessage"></span>
+    </div>
+
     <div class="content-wrapper">
 
 <?php include 'header.php'; ?>
@@ -861,7 +897,7 @@
 $page = $_GET['page'] ?? 'home';
 $page = basename($page); // Security: prevent directory traversal
 
-$allowed_pages = ['home', 'about', 'work', 'involve', 'connect', 'donate', 'gallery'];
+$allowed_pages = ['home', 'about', 'work', 'involve', 'connect', 'donate', 'gallery', 'activities'];
 if (in_array($page, $allowed_pages)) {
     $file = $page . '.php';
     if (file_exists($file)) {
@@ -876,7 +912,7 @@ if (in_array($page, $allowed_pages)) {
 </main>
 
 <!-- Connect With Us Section -->
-<section class="py-20 bg-light">
+<section id="connect" class="py-20 bg-light">
     <div class="container mx-auto px-4">
         <div class="text-center mb-16">
             <div class="inline-flex items-center px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-4">
@@ -894,28 +930,29 @@ if (in_array($page, $allowed_pages)) {
             <!-- Contact Form -->
             <div class="bg-white rounded-2xl p-8 shadow-xl">
                 <h2 class="font-heading text-2xl font-bold text-primary mb-6">Send us a Message</h2>
-                <form class="space-y-6">
+                <form id="contactForm" class="space-y-6">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
                             <label class="block text-gray-700 mb-2">Full Name *</label>
-                            <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent" required>
+                            <input type="text" name="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent" required>
                         </div>
                         <div>
                             <label class="block text-gray-700 mb-2">Email Address *</label>
-                            <input type="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent" required>
+                            <input type="email" name="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent" required>
                         </div>
                     </div>
                     <div>
                         <label class="block text-gray-700 mb-2">Subject</label>
-                        <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent" placeholder="How can we help you?">
+                        <input type="text" name="subject" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent" placeholder="How can we help you?">
                     </div>
                     <div>
                         <label class="block text-gray-700 mb-2">Message *</label>
-                        <textarea rows="6" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent resize-vertical" placeholder="Share your thoughts, questions, or ideas..." required></textarea>
+                        <textarea name="message" rows="6" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent resize-vertical" placeholder="Share your thoughts, questions, or ideas..." required></textarea>
                     </div>
-                    <button type="submit" class="w-full bg-accent text-white py-4 rounded-lg hover:bg-yellow-600 transition-colors font-semibold flex items-center justify-center">
-                        <span>Send Message</span>
-                        <i class="fas fa-paper-plane ml-2"></i>
+                    <div id="contactMessage" class="hidden p-4 rounded-lg mb-4"></div>
+                    <button type="submit" id="contactSubmitBtn" class="w-full bg-accent text-white py-4 rounded-lg hover:bg-yellow-600 transition-colors font-semibold flex items-center justify-center">
+                        <span id="submitText">Send Message</span>
+                        <i class="fas fa-paper-plane ml-2" id="submitIcon"></i>
                     </button>
                 </form>
             </div>
@@ -1066,6 +1103,75 @@ if (in_array($page, $allowed_pages)) {
         this.reset();
     });
 
+    // Contact form submission
+    document.getElementById('contactForm')?.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const submitBtn = document.getElementById('contactSubmitBtn');
+        const submitText = document.getElementById('submitText');
+        const submitIcon = document.getElementById('submitIcon');
+
+        // Disable button and show loading
+        submitBtn.disabled = true;
+        submitText.textContent = 'Sending...';
+        submitIcon.className = 'fas fa-spinner fa-spin ml-2';
+
+        // Prepare form data
+        const formData = new FormData(this);
+
+        // Send to contact handler
+        fetch('contact_handler.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Re-enable button
+            submitBtn.disabled = false;
+            submitText.textContent = 'Send Message';
+            submitIcon.className = 'fas fa-paper-plane ml-2';
+
+            if (data.success) {
+                // Show success toast
+                showToast('Message sent successfully! We will get back to you within 24 hours.', 'success');
+                this.reset();
+            } else {
+                // Show error toast
+                showToast(data.error || 'Failed to send message. Please try again.', 'error');
+            }
+        })
+        .catch(error => {
+            // Re-enable button
+            submitBtn.disabled = false;
+            submitText.textContent = 'Send Message';
+            submitIcon.className = 'fas fa-paper-plane ml-2';
+
+            // Show error toast
+            showToast('Network error. Please try again.', 'error');
+            console.error('Contact form error:', error);
+        });
+    });
+
+    // Toast notification function
+    function showToast(message, type) {
+        const toast = document.getElementById('toast');
+        const toastMessage = document.getElementById('toastMessage');
+
+        // Set message and type
+        toastMessage.textContent = message;
+        toast.className = `toast ${type}`;
+
+        // Show toast
+        setTimeout(() => {
+            toast.classList.add('show');
+        }, 100);
+
+        // Hide toast after 5 seconds
+        setTimeout(() => {
+            toast.classList.remove('show');
+        }, 5000);
+    }
+
     // Add active class to current page link
     const urlParams = new URLSearchParams(window.location.search);
     const currentPage = urlParams.get('page') || 'home';
@@ -1094,6 +1200,17 @@ if (in_array($page, $allowed_pages)) {
             this.style.animation = 'float 3s ease-in-out infinite';
         });
     }
+
+    // Scroll to connect section
+    window.scrollToConnect = function() {
+        const connectSection = document.getElementById('connect');
+        if (connectSection) {
+            connectSection.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+    };
 
     // Animation on scroll
     const observerOptions = {

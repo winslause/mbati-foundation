@@ -50,8 +50,8 @@
             <!-- CTA Buttons - Left aligned -->
             <div class="flex flex-col sm:flex-row gap-4 mb-16 animate-fade-in-left"
                  style="animation-delay: 0.8s;">
-                <a href="#what-we-do" class="hero-btn px-8 py-4 rounded-full text-white font-medium text-lg flex items-center justify-center sm:justify-start group w-full sm:w-auto">
-                    <span class="italic">Discover Our Programs</span>
+                <a href="index.php?page=activities" class="hero-btn px-8 py-4 rounded-full text-white font-medium text-lg flex items-center justify-center sm:justify-start group w-full sm:w-auto">
+                    <span class="italic">Discover Our Activities</span>
                     <i class="fas fa-arrow-right ml-3 group-hover:translate-x-2 transition-transform"></i>
                 </a>
                 <a href="index.php?page=gallery"
@@ -381,10 +381,10 @@
                     <span>#WeValueYourSacrifice</span>
                 </div>
 
-                <button class="hmf-card-button hmf-btn-volunteer">
+                <a href="index.php?page=connect" class="hmf-card-button hmf-btn-volunteer">
                     <span>Reach Us Out</span>
                     <i class="fas fa-arrow-right"></i>
-                </button>
+                </a>
             </div>
 
             <!-- Card 2: Donations -->
@@ -425,10 +425,10 @@
                     <span>#YourOpinionIsValued</span>
                 </div>
 
-                <button class="hmf-card-button hmf-btn-contribution">
+                <a href="index.php?page=connect" class="hmf-card-button hmf-btn-contribution">
                     <span>Share Your Idea</span>
                     <i class="fas fa-comment"></i>
-                </button>
+                </a>
             </div>
         </div>
 
@@ -509,162 +509,6 @@
     </div>
 </div>
 
-<!-- Get in Touch Section -->
-<section id="hmf-get-in-touch" class="hmf-contact-section">
-    <div class="hmf-contact-container">
-        <!-- Section Header -->
-        <div class="hmf-contact-header">
-            <div class="hmf-contact-badge">
-                <span>CONNECT WITH US</span>
-            </div>
-            <h2 class="hmf-contact-title">
-                Get in <span class="hmf-contact-highlight">Touch</span>
-            </h2>
-            <p class="hmf-contact-subtitle">
-                Want to get in touch? We'd love to hear from you. Here's how to chat with a member of our team.
-            </p>
-        </div>
-
-        <div class="hmf-contact-content">
-            <!-- Left Column: Contact Cards -->
-            <div class="hmf-contact-left">
-                <!-- Social Media Card -->
-                <div class="hmf-contact-card hmf-card-social">
-                    <div class="hmf-contact-card-icon">
-                        <i class="fab fa-facebook-f"></i>
-                    </div>
-                    <div class="hmf-contact-card-content">
-                        <h3 class="hmf-contact-card-title">Follow us on Facebook</h3>
-                        <p class="hmf-contact-card-description">
-                            Stay updated with our latest projects, events, and community stories
-                        </p>
-                        <a href="https://facebook.com" target="_blank" class="hmf-contact-card-button">
-                            <span>Visit Our Page</span>
-                            <i class="fas fa-external-link-alt"></i>
-                        </a>
-                    </div>
-                    <div class="hmf-contact-card-decoration">
-                        <div class="hmf-deco-circle hmf-deco-1"></div>
-                        <div class="hmf-deco-circle hmf-deco-2"></div>
-                    </div>
-                </div>
-
-                <!-- Phone Card -->
-                <div class="hmf-contact-card hmf-card-phone">
-                    <div class="hmf-contact-card-icon">
-                        <i class="fas fa-phone"></i>
-                    </div>
-                    <div class="hmf-contact-card-content">
-                        <h3 class="hmf-contact-card-title">Reach us Via Phone</h3>
-                        <div class="hmf-contact-card-phone-number">
-                            <i class="fas fa-phone-alt"></i>
-                            <span>+254 768 927895</span>
-                        </div>
-                        <p class="hmf-contact-card-description">
-                            Available Monday to Friday, 8:00 AM - 5:00 PM EAT
-                        </p>
-                        <a href="tel:+254768927895" class="hmf-contact-card-button">
-                            <span>Call Now</span>
-                            <i class="fas fa-phone"></i>
-                        </a>
-                    </div>
-                    <div class="hmf-contact-card-decoration">
-                        <div class="hmf-deco-circle hmf-deco-3"></div>
-                        <div class="hmf-deco-circle hmf-deco-4"></div>
-                    </div>
-                </div>
-
-                <!-- Email Card -->
-                <div class="hmf-contact-card hmf-card-email">
-                    <div class="hmf-contact-card-icon">
-                        <i class="fas fa-envelope"></i>
-                    </div>
-                    <div class="hmf-contact-card-content">
-                        <h3 class="hmf-contact-card-title">Reach us via Mail</h3>
-                        <div class="hmf-contact-card-email-address">
-                            <i class="fas fa-at"></i>
-                            <span>info@hmfoundation.org</span>
-                        </div>
-                        <p class="hmf-contact-card-description">
-                            We respond to all inquiries within 24 hours
-                        </p>
-                        <a href="mailto:info@hmfoundation.org" class="hmf-contact-card-button">
-                            <span>Send Email</span>
-                            <i class="fas fa-paper-plane"></i>
-                        </a>
-                    </div>
-                    <div class="hmf-contact-card-decoration">
-                        <div class="hmf-deco-circle hmf-deco-5"></div>
-                        <div class="hmf-deco-circle hmf-deco-6"></div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Right Column: Image -->
-            <div class="hmf-contact-right">
-                <div class="hmf-contact-image-container">
-                    <div class="hmf-contact-image-wrapper">
-                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
-                             alt="Harold Mbati Foundation Team"
-                             class="hmf-contact-image">
-                        <div class="hmf-image-overlay"></div>
-                        <div class="hmf-image-content">
-                            <div class="hmf-image-icon">
-                                <i class="fas fa-hands-helping"></i>
-                            </div>
-                            <h3 class="hmf-image-title">Our Team Awaits You</h3>
-                            <p class="hmf-image-text">
-                                Ready to listen, help, and collaborate on making a difference together
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Floating elements around image -->
-                    <div class="hmf-floating-element hmf-float-1">
-                        <i class="fas fa-comment-dots"></i>
-                    </div>
-                    <div class="hmf-floating-element hmf-float-2">
-                        <i class="fas fa-heart"></i>
-                    </div>
-                    <div class="hmf-floating-element hmf-float-3">
-                        <i class="fas fa-star"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Additional Contact Info -->
-        <div class="hmf-contact-footer">
-            <div class="hmf-contact-hours">
-                <div class="hmf-hour-card">
-                    <i class="fas fa-clock"></i>
-                    <div>
-                        <h4>Office Hours</h4>
-                        <p>Mon - Fri: 8:00 AM - 5:00 PM</p>
-                    </div>
-                </div>
-                <div class="hmf-hour-card">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <div>
-                        <h4>Location</h4>
-                        <p>Luanda Constituency, Kenya</p>
-                    </div>
-                </div>
-                <div class="hmf-hour-card">
-                    <i class="fas fa-globe-africa"></i>
-                    <div>
-                        <h4>Timezone</h4>
-                        <p>East Africa Time (EAT)</p>
-                    </div>
-                </div>
-            </div>
-
-            <p class="hmf-contact-cta">
-                "Let's work together to create lasting impact in our communities. Your voice matters to us."
-            </p>
-        </div>
-    </div>
-</section>
 
 <style>
 /* Hero animations */
@@ -2046,17 +1890,17 @@ function initAnimations() {
 }
 
 function initEventListeners() {
-    // Volunteer button
-    const volunteerBtn = document.querySelector('.hmf-btn-volunteer');
-    if (volunteerBtn) {
-        volunteerBtn.addEventListener('click', openContactModal);
-    }
+    // Volunteer button - now links to connect page
+    // const volunteerBtn = document.querySelector('.hmf-btn-volunteer');
+    // if (volunteerBtn) {
+    //     volunteerBtn.addEventListener('click', openContactModal);
+    // }
 
-    // Contribution button
-    const contributionBtn = document.querySelector('.hmf-btn-contribution');
-    if (contributionBtn) {
-        contributionBtn.addEventListener('click', openContactModal);
-    }
+    // Contribution button - now links to connect page
+    // const contributionBtn = document.querySelector('.hmf-btn-contribution');
+    // if (contributionBtn) {
+    //     contributionBtn.addEventListener('click', openContactModal);
+    // }
 
     // Modal close buttons
     document.querySelectorAll('.hmf-modal-close').forEach(btn => {
