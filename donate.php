@@ -1,207 +1,709 @@
-<section class="py-20 bg-light">
-    <div class="container mx-auto px-4">
-        <div class="text-center mb-16">
-            <div class="inline-flex items-center px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-4">
-                <span class="text-sm font-semibold text-primary tracking-wider">MAKE A DIFFERENCE</span>
-            </div>
-            <h1 class="font-heading text-4xl md:text-5xl font-bold text-primary mb-6">
-                Support Our Mission
-            </h1>
-            <p class="text-lg text-gray-600 max-w-3xl mx-auto">
-                Your generosity enables us to continue our work in education, sports, health, and community development across Luanda Constituency.
-            </p>
+    <!-- Hero Section -->
+    <section class="hero-bg min-h-[40vh] flex items-center relative overflow-hidden pt-24">
+        <!-- Animated Background Elements -->
+        <div class="absolute inset-0">
+            <div class="absolute top-20 left-10 w-32 h-32 bg-amber-500/10 rounded-full floating-element"></div>
+            <div class="absolute bottom-20 right-10 w-24 h-24 bg-white/5 rounded-full floating-element" style="animation-delay: 2s;"></div>
+            <div class="absolute top-1/2 left-1/3 w-16 h-16 bg-amber-500/5 rounded-full floating-element" style="animation-delay: 4s;"></div>
         </div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
-            <!-- Donation Form -->
-            <div class="bg-white rounded-2xl p-8 shadow-xl">
-                <h2 class="font-heading text-2xl font-bold text-primary mb-6">Make a Donation</h2>
-
-                <!-- Donation Amount Selection -->
-                <div class="mb-8">
-                    <label class="block text-gray-700 mb-4">Select Amount (KES)</label>
-                    <div class="grid grid-cols-3 gap-4 mb-4">
-                        <button class="amount-btn px-4 py-3 border-2 border-gray-300 rounded-lg hover:border-accent hover:bg-accent/10 transition-colors" data-amount="1000">Ksh 1,000</button>
-                        <button class="amount-btn px-4 py-3 border-2 border-gray-300 rounded-lg hover:border-accent hover:bg-accent/10 transition-colors" data-amount="2500">Ksh 2,500</button>
-                        <button class="amount-btn px-4 py-3 border-2 border-gray-300 rounded-lg hover:border-accent hover:bg-accent/10 transition-colors" data-amount="5000">Ksh 5,000</button>
-                    </div>
-                    <div class="grid grid-cols-2 gap-4">
-                        <button class="amount-btn px-4 py-3 border-2 border-gray-300 rounded-lg hover:border-accent hover:bg-accent/10 transition-colors" data-amount="10000">Ksh 10,000</button>
-                        <input type="number" id="custom-amount" placeholder="Other amount" class="px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent">
-                    </div>
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="max-w-4xl">
+                <div class="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full mb-6">
+                    <div class="w-2 h-2 bg-amber-500 rounded-full animate-pulse"></div>
+                    <span class="text-white/90 font-medium text-sm tracking-wider">SUPPORT OUR MISSION</span>
                 </div>
 
-                <form class="space-y-6">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div>
-                            <label class="block text-gray-700 mb-2">Full Name *</label>
-                            <input type="text" id="donor-name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent" required>
-                        </div>
-                        <div>
-                            <label class="block text-gray-700 mb-2">Email Address *</label>
-                            <input type="email" id="donor-email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent" required>
-                        </div>
-                    </div>
+                <h1 class="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
+                    Make a <span class="text-accent">Difference</span>,<br>
+                    Change a <span class="text-accent">Life</span>
+                </h1>
 
-                    <div>
-                        <label class="block text-gray-700 mb-2">Phone Number</label>
-                        <input type="tel" id="donor-phone" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent">
-                    </div>
-
-                    <div>
-                        <label class="block text-gray-700 mb-2">Payment Method</label>
-                        <div class="space-y-3">
-                            <label class="flex items-center">
-                                <input type="radio" name="payment" value="mpesa" class="text-accent focus:ring-accent" checked>
-                                <span class="ml-3">M-Pesa</span>
-                            </label>
-                            <label class="flex items-center">
-                                <input type="radio" name="payment" value="card" class="text-accent focus:ring-accent">
-                                <span class="ml-3">Credit/Debit Card</span>
-                            </label>
-                            <label class="flex items-center">
-                                <input type="radio" name="payment" value="bank" class="text-accent focus:ring-accent">
-                                <span class="ml-3">Bank Transfer</span>
-                            </label>
-                        </div>
-                    </div>
-
-                    <div>
-                        <label class="block text-gray-700 mb-2">Message (Optional)</label>
-                        <textarea id="donor-message" rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent resize-vertical" placeholder="Share why you're supporting our mission..."></textarea>
-                    </div>
-
-                    <button type="submit" class="w-full bg-accent text-white py-4 rounded-lg hover:bg-yellow-600 transition-colors font-semibold flex items-center justify-center">
-                        <span>Complete Donation</span>
-                        <i class="fas fa-heart ml-2"></i>
-                    </button>
-                </form>
+                <p class="text-xl text-white/80 mb-10 max-w-3xl leading-relaxed">
+                    Your donation empowers communities, transforms lives, and creates sustainable change across Kenya. Every contribution makes a real impact.
+                </p>
             </div>
+        </div>
+    </section>
 
-            <!-- Impact Information -->
-            <div class="space-y-8">
-                <!-- Impact Stats -->
-                <div class="bg-white rounded-2xl p-8 shadow-xl">
-                    <h3 class="font-heading text-xl font-bold text-primary mb-6">Your Impact</h3>
-                    <div class="space-y-6">
-                        <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
-                            <div>
-                                <div class="font-semibold text-primary">Ksh 1,000</div>
-                                <div class="text-sm text-gray-600">Provides school supplies for 5 children</div>
+    <!-- Main Donation Section -->
+    <section class="py-12">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+
+                <!-- Donation Wizard -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <!-- Left Column - Donation Steps -->
+                    <div class="lg:col-span-2">
+                        <div class="donation-card p-8">
+                            <!-- Step Indicators -->
+                            <div class="flex items-center justify-between mb-10">
+                                <div class="flex flex-col items-center">
+                                    <div class="step-indicator active">1</div>
+                                    <span class="mt-2 text-sm font-medium">Payment</span>
+                                </div>
+                                <div class="flex-1 h-1 bg-gray-200 mx-4"></div>
+                                <div class="flex flex-col items-center">
+                                    <div class="step-indicator">2</div>
+                                    <span class="mt-2 text-sm text-gray-500">Details</span>
+                                </div>
+                                <div class="flex-1 h-1 bg-gray-200 mx-4"></div>
+                                <div class="flex flex-col items-center">
+                                    <div class="step-indicator">3</div>
+                                    <span class="mt-2 text-sm text-gray-500">Complete</span>
+                                </div>
                             </div>
-                            <i class="fas fa-graduation-cap text-accent text-2xl"></i>
-                        </div>
-                        <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
-                            <div>
-                                <div class="font-semibold text-primary">Ksh 2,500</div>
-                                <div class="text-sm text-gray-600">Supports a child through nutrition program</div>
+
+                            <!-- Step 1: Select Payment Method -->
+                            <div id="step1" class="step-content active">
+                                <h3 class="text-2xl font-bold text-gray-800 mb-6">Select Payment Method</h3>
+
+                                <!-- M-Pesa Payment Options -->
+                                <div class="mb-8">
+                                    <h4 class="font-medium text-gray-700 mb-4">Select M-Pesa Option</h4>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                        <!-- Paybill Option -->
+                                        <div class="mpesa-option p-6 rounded-xl selected" data-option="paybill">
+                                            <div class="flex items-start gap-4">
+                                                <div class="w-12 h-12 rounded-lg bg-green-100 flex items-center justify-center">
+                                                    <i class="fas fa-building text-green-600 text-xl"></i>
+                                                </div>
+                                                <div class="flex-1">
+                                                    <h5 class="font-bold text-gray-800 mb-1">Paybill Number</h5>
+                                                    <p class="text-gray-600 text-sm mb-3">Use our secure paybill number</p>
+                                                    <div class="bg-gray-50 p-3 rounded-lg">
+                                                        <div class="text-sm text-gray-700">
+                                                            <span class="font-medium">Business No:</span> XXXXXX
+                                                        </div>
+                                                        <div class="text-sm text-gray-700">
+                                                            <span class="font-medium">Account No:</span> HAROLDMBATI
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="custom-checkbox checked"></div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Till Number Option -->
+                                        <div class="mpesa-option p-6 rounded-xl" data-option="till">
+                                            <div class="flex items-start gap-4">
+                                                <div class="w-12 h-12 rounded-lg bg-blue-100 flex items-center justify-center">
+                                                    <i class="fas fa-store text-blue-600 text-xl"></i>
+                                                </div>
+                                                <div class="flex-1">
+                                                    <h5 class="font-bold text-gray-800 mb-1">Till Number</h5>
+                                                    <p class="text-gray-600 text-sm mb-3">Use our secure till number</p>
+                                                    <div class="bg-gray-50 p-3 rounded-lg">
+                                                        <div class="text-sm text-gray-700">
+                                                            <span class="font-medium">Till No:</span> XXXXXX
+                                                        </div>
+                                                        <div class="text-sm text-gray-700">
+                                                            <span class="font-medium">Store Name:</span> Harold Mbati Foundation
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="custom-checkbox"></div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Buy Goods Option -->
+                                        <div class="mpesa-option p-6 rounded-xl" data-option="buygoods">
+                                            <div class="flex items-start gap-4">
+                                                <div class="w-12 h-12 rounded-lg bg-purple-100 flex items-center justify-center">
+                                                    <i class="fas fa-shopping-cart text-purple-600 text-xl"></i>
+                                                </div>
+                                                <div class="flex-1">
+                                                    <h5 class="font-bold text-gray-800 mb-1">Buy Goods</h5>
+                                                    <p class="text-gray-600 text-sm mb-3">Use our secure buy goods number</p>
+                                                    <div class="bg-gray-50 p-3 rounded-lg">
+                                                        <div class="text-sm text-gray-700">
+                                                            <span class="font-medium">Till No:</span> XXXXXX
+                                                        </div>
+                                                        <div class="text-sm text-gray-700">
+                                                            <span class="font-medium">Business:</span> HMF Donations
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="custom-checkbox"></div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Pochi La Biashara -->
+                                        <div class="mpesa-option p-6 rounded-xl" data-option="pochi">
+                                            <div class="flex items-start gap-4">
+                                                <div class="w-12 h-12 rounded-lg bg-yellow-100 flex items-center justify-center">
+                                                    <i class="fas fa-wallet text-yellow-600 text-xl"></i>
+                                                </div>
+                                                <div class="flex-1">
+                                                    <h5 class="font-bold text-gray-800 mb-1">Pochi La Biashara</h5>
+                                                    <p class="text-gray-600 text-sm mb-3">Direct business wallet payment</p>
+                                                    <div class="bg-gray-50 p-3 rounded-lg">
+                                                        <div class="text-sm text-gray-700">
+                                                            <span class="font-medium">Pochi No:</span> XXXXXX
+                                                        </div>
+                                                        <div class="text-sm text-gray-700">
+                                                            <span class="font-medium">Wallet:</span> HMF Business
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="custom-checkbox"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Next Button -->
+                                <button class="w-full py-4 bg-amber-500 text-white font-bold rounded-xl hover:bg-yellow-600 transition-colors flex items-center justify-center gap-3" onclick="nextStep()">
+                                    <span>Continue to Information</span>
+                                    <i class="fas fa-arrow-right"></i>
+                                </button>
                             </div>
-                            <i class="fas fa-utensils text-accent text-2xl"></i>
-                        </div>
-                        <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
-                            <div>
-                                <div class="font-semibold text-primary">Ksh 5,000</div>
-                                <div class="text-sm text-gray-600">Equips a sports team with training gear</div>
+
+                            <!-- Step 2: Donor Details -->
+                            <div id="step2" class="step-content hidden">
+                                <h3 class="text-2xl font-bold text-gray-800 mb-6">Your Information</h3>
+
+                                <div class="space-y-6">
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                        <div>
+                                            <label class="block text-gray-700 mb-2">Full Name *</label>
+                                            <input type="text" class="form-input" placeholder="Enter your full name" required>
+                                        </div>
+                                        <div>
+                                            <label class="block text-gray-700 mb-2">Phone Number *</label>
+                                            <input type="tel" class="form-input" placeholder="07XX XXX XXX" required>
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <label class="block text-gray-700 mb-2">Email Address</label>
+                                        <input type="email" class="form-input" placeholder="your@email.com">
+                                    </div>
+
+                                    <div>
+                                        <label class="block text-gray-700 mb-2">Donation Purpose (Optional)</label>
+                                        <select class="form-input">
+                                            <option value="">General Donation</option>
+                                            <option value="youth">Youth Empowerment Program</option>
+                                            <option value="sports">Sports Development</option>
+                                            <option value="education">School Development</option>
+                                            <option value="health">Mother & Child Care</option>
+                                            <option value="specific">Specific Project</option>
+                                        </select>
+                                    </div>
+
+                                    <div>
+                                        <label class="block text-gray-700 mb-2">Message (Optional)</label>
+                                        <textarea class="form-input h-32" placeholder="Add a personal message with your donation..."></textarea>
+                                    </div>
+
+                                    <div class="flex items-start gap-3 p-4 bg-blue-50 rounded-xl">
+                                        <div class="custom-checkbox checked mt-1"></div>
+                                        <div>
+                                            <label class="font-medium text-gray-800 cursor-pointer">Make this a monthly donation</label>
+                                            <p class="text-gray-600 text-sm mt-1">Help us plan better by making this a recurring monthly donation.</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="flex items-start gap-3 p-4 bg-green-50 rounded-xl">
+                                        <div class="custom-checkbox checked mt-1"></div>
+                                        <div>
+                                            <label class="font-medium text-gray-800 cursor-pointer">Receive updates about our work</label>
+                                            <p class="text-gray-600 text-sm mt-1">Get occasional emails about the impact of your donation.</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="flex items-start gap-3 p-4 bg-red-50 rounded-xl">
+                                        <input type="checkbox" class="mt-1" id="anonymous">
+                                        <div>
+                                            <label for="anonymous" class="font-medium text-gray-800 cursor-pointer">Make this donation anonymous</label>
+                                            <p class="text-gray-600 text-sm mt-1">Your name won't appear in our public donor lists.</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Navigation Buttons -->
+                                <div class="flex gap-4 mt-8">
+                                    <button class="flex-1 py-3 border-2 border-gray-300 text-gray-700 font-bold rounded-xl hover:bg-gray-50 transition-colors flex items-center justify-center gap-3" onclick="prevStep()">
+                                        <i class="fas fa-arrow-left"></i>
+                                        <span>Back</span>
+                                    </button>
+                                    <button class="flex-1 py-3 bg-amber-500 text-white font-bold rounded-xl hover:bg-yellow-600 transition-colors flex items-center justify-center gap-3" onclick="nextStep()">
+                                        <span>Continue to Payment</span>
+                                        <i class="fas fa-arrow-right"></i>
+                                    </button>
+                                </div>
                             </div>
-                            <i class="fas fa-futbol text-accent text-2xl"></i>
-                        </div>
-                        <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
-                            <div>
-                                <div class="font-semibold text-primary">Ksh 10,000</div>
-                                <div class="text-sm text-gray-600">Funds maternal healthcare for a family</div>
+
+                            <!-- Step 3: Payment Instructions -->
+                            <div id="step3" class="step-content hidden">
+                                <div class="text-center">
+                                    <div class="w-20 h-20 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-6 success-pulse">
+                                        <i class="fas fa-lock text-green-600 text-3xl"></i>
+                                    </div>
+
+                                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Complete Your Donation</h3>
+                                    <p class="text-gray-600 mb-8 max-w-2xl mx-auto">
+                                        Follow the steps below to complete your donation via M-Pesa
+                                    </p>
+                                </div>
+
+                                <!-- Selected Option Details -->
+                                <div class="bg-gray-50 rounded-xl p-6 mb-8">
+                                    <h4 class="font-bold text-gray-800 mb-4">Payment Instructions</h4>
+
+                                    <div id="paybillInstructions" class="payment-instructions">
+                                        <ol class="space-y-4">
+                                            <li class="flex items-start gap-3">
+                                                <span class="w-8 h-8 rounded-full bg-amber-500 text-white flex items-center justify-center font-bold">1</span>
+                                                <span class="flex-1">Go to <strong>Lipa Na M-Pesa</strong> on your phone</span>
+                                            </li>
+                                            <li class="flex items-start gap-3">
+                                                <span class="w-8 h-8 rounded-full bg-amber-500 text-white flex items-center justify-center font-bold">2</span>
+                                                <span class="flex-1">Select <strong>Pay Bill</strong></span>
+                                            </li>
+                                            <li class="flex items-start gap-3">
+                                                <span class="w-8 h-8 rounded-full bg-amber-500 text-white flex items-center justify-center font-bold">3</span>
+                                                <div class="flex-1">
+                                                    <p>Enter Business Number: <strong class="text-lg">XXXXXX</strong></p>
+                                                </div>
+                                            </li>
+                                            <li class="flex items-start gap-3">
+                                                <span class="w-8 h-8 rounded-full bg-amber-500 text-white flex items-center justify-center font-bold">4</span>
+                                                <div class="flex-1">
+                                                    <p>Enter Account Number: <strong class="text-lg">HAROLDMBATI</strong></p>
+                                                </div>
+                                            </li>
+                                            <li class="flex items-start gap-3">
+                                                <span class="w-8 h-8 rounded-full bg-amber-500 text-white flex items-center justify-center font-bold">6</span>
+                                                <span class="flex-1">Enter your M-Pesa PIN and confirm</span>
+                                            </li>
+                                        </ol>
+                                    </div>
+
+                                    <div class="mt-6 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
+                                        <div class="flex items-start gap-3">
+                                            <i class="fas fa-info-circle text-yellow-600 mt-1"></i>
+                                            <p class="text-yellow-700 text-sm">
+                                                <strong>Note:</strong> This is a demo payment system. No actual transaction will occur.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Demo Completion -->
+                                <div class="text-center">
+                                    <button class="px-8 py-4 bg-green-600 text-white font-bold rounded-xl hover:bg-green-700 transition-colors flex items-center justify-center gap-3 mx-auto mb-4" onclick="completeDonation()">
+                                        <i class="fas fa-check-circle"></i>
+                                        <span>Complete Donation (Demo)</span>
+                                    </button>
+                                    <p class="text-gray-500 text-sm">Click above to simulate a successful donation</p>
+                                </div>
+
+                                <!-- Navigation Buttons -->
+                                <div class="flex gap-4 mt-8">
+                                    <button class="flex-1 py-3 border-2 border-gray-300 text-gray-700 font-bold rounded-xl hover:bg-gray-50 transition-colors flex items-center justify-center gap-3" onclick="prevStep()">
+                                        <i class="fas fa-arrow-left"></i>
+                                        <span>Back to Details</span>
+                                    </button>
+                                </div>
                             </div>
-                            <i class="fas fa-heartbeat text-accent text-2xl"></i>
+
+                            <!-- Step 4: Success Screen -->
+                            <div id="step4" class="step-content hidden">
+                                <div class="text-center py-12">
+                                    <div class="w-24 h-24 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-8 success-pulse">
+                                        <i class="fas fa-check-circle text-green-600 text-4xl"></i>
+                                    </div>
+
+                                    <h3 class="text-3xl font-bold text-gray-800 mb-4">Thank You!</h3>
+                                    <p class="text-gray-600 text-xl mb-8 max-w-2xl mx-auto">
+                                        Your generous donation will help transform lives and support our community programs.
+                                    </p>
+
+                                    <div class="bg-gray-50 rounded-xl p-6 max-w-2xl mx-auto mb-8">
+                                        <div class="text-center mb-6">
+                                            <div class="w-16 h-16 rounded-full bg-amber-500/10 flex items-center justify-center mx-auto mb-4">
+                                                <i class="fas fa-receipt text-accent text-2xl"></i>
+                                            </div>
+                                            <h4 class="font-bold text-gray-800 mb-2">Donation Summary</h4>
+                                            <p class="text-gray-600 text-sm">Reference: <code class="bg-gray-100 px-2 py-1 rounded">HMF-2024-00123</code></p>
+                                        </div>
+
+                                        <div class="space-y-3 text-left">
+                                            <div class="flex justify-between py-2 border-b border-gray-200">
+                                                <span class="text-gray-600">Payment Method</span>
+                                                <span class="font-bold" id="summaryMethod">M-Pesa Paybill</span>
+                                            </div>
+                                            <div class="flex justify-between py-2 border-b border-gray-200">
+                                                <span class="text-gray-600">Date</span>
+                                                <span class="font-bold" id="summaryDate"></span>
+                                            </div>
+                                            <div class="flex justify-between py-2">
+                                                <span class="text-gray-600">Status</span>
+                                                <span class="px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm font-bold">Completed</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="space-y-4">
+                                        <p class="text-gray-600">
+                                            A confirmation email has been sent to your email address with your donation receipt.
+                                        </p>
+
+                                        <div class="flex flex-wrap gap-4 justify-center">
+                                            <button class="px-6 py-3 bg-amber-500 text-white font-bold rounded-xl hover:bg-yellow-600 transition-colors flex items-center gap-2" onclick="downloadReceipt()">
+                                                <i class="fas fa-download"></i>
+                                                <span>Download Receipt</span>
+                                            </button>
+                                            <a href="/" class="px-6 py-3 border-2 border-accent text-accent font-bold rounded-xl hover:bg-amber-500/5 transition-colors flex items-center gap-2">
+                                                <i class="fas fa-home"></i>
+                                                <span>Back to Home</span>
+                                            </a>
+                                            <button class="px-6 py-3 bg-green-600 text-white font-bold rounded-xl hover:bg-green-700 transition-colors flex items-center gap-2" onclick="shareDonation()">
+                                                <i class="fas fa-share-alt"></i>
+                                                <span>Share</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- Why Donate -->
-                <div class="bg-primary rounded-2xl p-8 text-white">
-                    <h3 class="font-heading text-xl font-bold mb-6">Why Your Support Matters</h3>
-                    <ul class="space-y-4">
-                        <li class="flex items-start">
-                            <i class="fas fa-check text-accent mr-3 mt-1"></i>
-                            <span>100% of donations go directly to programs</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-check text-accent mr-3 mt-1"></i>
-                            <span>Transparent reporting on impact and usage</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-check text-accent mr-3 mt-1"></i>
-                            <span>Direct, measurable impact in communities</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-check text-accent mr-3 mt-1"></i>
-                            <span>Sustainable, long-term development focus</span>
-                        </li>
-                    </ul>
-                </div>
+                    <!-- Right Column - Impact & Info -->
+                    <div>
+                        <!-- Impact Card -->
+                        <div class="donation-card p-6 mb-8">
+                            <div class="w-12 h-12 rounded-xl bg-amber-500/10 flex items-center justify-center mb-4">
+                                <i class="fas fa-heart text-accent text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-4">Your Impact</h3>
+                            <ul class="space-y-3">
+                                <li class="flex items-center gap-3">
+                                    <i class="fas fa-check-circle text-green-500"></i>
+                                    <span class="text-gray-700">Support feeds children for a month</span>
+                                </li>
+                                <li class="flex items-center gap-3">
+                                    <i class="fas fa-check-circle text-green-500"></i>
+                                    <span class="text-gray-700">Provide essential school supplies</span>
+                                </li>
+                                <li class="flex items-center gap-3">
+                                    <i class="fas fa-check-circle text-green-500"></i>
+                                    <span class="text-gray-700">Support youth training programs</span>
+                                </li>
+                                <li class="flex items-center gap-3">
+                                    <i class="fas fa-check-circle text-green-500"></i>
+                                    <span class="text-gray-700">Fund sports equipment and activities</span>
+                                </li>
+                            </ul>
+                        </div>
 
-                <!-- Monthly Giving -->
-                <div class="bg-accent rounded-2xl p-8 text-white">
-                    <h3 class="font-heading text-xl font-bold mb-4">Become a Monthly Donor</h3>
-                    <p class="mb-6 opacity-90">Consistent support allows us to plan and execute programs more effectively.</p>
-                    <button class="bg-primary text-white px-6 py-3 rounded-lg hover:bg-primary/90 transition-colors font-semibold">
-                        Set Up Monthly Giving
-                    </button>
+                        <!-- Why Donate Card -->
+                        <div class="donation-card p-6 mb-8">
+                            <div class="w-12 h-12 rounded-xl bg-blue-100 flex items-center justify-center mb-4">
+                                <i class="fas fa-hands-helping text-blue-600 text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-4">Why Donate?</h3>
+                            <div class="space-y-4">
+                                <div class="flex items-start gap-3">
+                                    <i class="fas fa-shield-alt text-accent mt-1"></i>
+                                    <div>
+                                        <h4 class="font-medium text-gray-800">Transparent</h4>
+                                        <p class="text-gray-600 text-sm">100% of funds go directly to programs</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start gap-3">
+                                    <i class="fas fa-chart-line text-accent mt-1"></i>
+                                    <div>
+                                        <h4 class="font-medium text-gray-800">Sustainable</h4>
+                                        <p class="text-gray-600 text-sm">Long-term community solutions</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start gap-3">
+                                    <i class="fas fa-certificate text-accent mt-1"></i>
+                                    <div>
+                                        <h4 class="font-medium text-gray-800">Certified</h4>
+                                        <p class="text-gray-600 text-sm">Registered non-profit organization</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- M-Pesa Tips -->
+                        <div class="donation-card p-6">
+                            <div class="w-12 h-12 rounded-xl bg-green-100 flex items-center justify-center mb-4">
+                                <i class="fas fa-mobile-alt text-green-600 text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-4">M-Pesa Tips</h3>
+                            <div class="space-y-3">
+                                <div class="p-3 bg-green-50 rounded-lg">
+                                    <p class="text-sm text-green-700">✓ Ensure you have sufficient M-Pesa balance</p>
+                                </div>
+                                <div class="p-3 bg-blue-50 rounded-lg">
+                                    <p class="text-sm text-blue-700">✓ Double-check the business number</p>
+                                </div>
+                                <div class="p-3 bg-yellow-50 rounded-lg">
+                                    <p class="text-sm text-yellow-700">✓ Save your transaction receipt</p>
+                                </div>
+                                <div class="p-3 bg-purple-50 rounded-lg">
+                                    <p class="text-sm text-purple-700">✓ Contact 0757 000 000 for support</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+    </section>
 
-        <!-- Other Ways to Help -->
-        <div class="bg-white rounded-2xl p-8 md:p-12 shadow-xl">
-            <h2 class="font-heading text-3xl font-bold text-primary text-center mb-8">Other Ways to Help</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="text-center">
-                    <div class="w-16 h-16 bg-accent/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <i class="fas fa-hands-helping text-2xl text-accent"></i>
-                    </div>
-                    <h3 class="font-semibold text-primary mb-3">Volunteer</h3>
-                    <p class="text-gray-600 mb-4">Share your time and skills to help implement our programs.</p>
-                    <button class="text-accent hover:text-yellow-600 font-semibold">Learn More →</button>
-                </div>
-                <div class="text-center">
-                    <div class="w-16 h-16 bg-accent/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <i class="fas fa-handshake text-2xl text-accent"></i>
-                    </div>
-                    <h3 class="font-semibold text-primary mb-3">Partner With Us</h3>
-                    <p class="text-gray-600 mb-4">Corporate partnerships and NGO collaborations.</p>
-                    <button class="text-accent hover:text-yellow-600 font-semibold">Contact Us →</button>
-                </div>
-                <div class="text-center">
-                    <div class="w-16 h-16 bg-accent/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <i class="fas fa-share text-2xl text-accent"></i>
-                    </div>
-                    <h3 class="font-semibold text-primary mb-3">Spread the Word</h3>
-                    <p class="text-gray-600 mb-4">Share our mission with your network and friends.</p>
-                    <button class="text-accent hover:text-yellow-600 font-semibold">Share Now →</button>
-                </div>
+    <!-- CTA Section -->
+    <section class="py-16 bg-gradient-to-r from-slate-900 to-slate-800">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-3xl font-bold text-white mb-6">Every Donation Makes a Difference</h2>
+                <p class="text-xl text-white/80 mb-8">
+                    Join us in creating sustainable change across Kenya. Your support today builds a better tomorrow.
+                </p>
+                <button class="px-8 py-4 bg-amber-500 text-white font-bold rounded-xl hover:bg-yellow-600 transition-colors text-lg" onclick="showTab('step1')">
+                    Make Another Donation
+                </button>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<script>
-// Donation amount selection
-document.addEventListener('DOMContentLoaded', function() {
-    const amountButtons = document.querySelectorAll('.amount-btn');
-    const customAmount = document.getElementById('custom-amount');
 
-    amountButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            // Remove active class from all buttons
-            amountButtons.forEach(btn => btn.classList.remove('border-accent', 'bg-accent/10'));
-            // Add active class to clicked button
-            this.classList.add('border-accent', 'bg-accent/10');
-            // Clear custom amount
-            customAmount.value = '';
+    <script>
+        // Current step tracking
+        let currentStep = 1;
+        let selectedOption = 'paybill';
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set current date for success summary
+            const now = new Date();
+            const formattedDate = now.toLocaleDateString('en-US', {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+            document.getElementById('summaryDate').textContent = formattedDate;
+
+            // Set up M-Pesa option selection
+            setupMpesaOptions();
         });
-    });
 
-    customAmount.addEventListener('input', function() {
-        // Remove active class from buttons when custom amount is entered
-        amountButtons.forEach(btn => btn.classList.remove('border-accent', 'bg-accent/10'));
-    });
-});
-</script>
+        // M-Pesa option selection
+        function setupMpesaOptions() {
+            const mpesaOptions = document.querySelectorAll('.mpesa-option');
+
+            mpesaOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    // Remove selected class from all options
+                    mpesaOptions.forEach(o => {
+                        o.classList.remove('selected');
+                        o.querySelector('.custom-checkbox').classList.remove('checked');
+                    });
+
+                    // Add selected class to clicked option
+                    this.classList.add('selected');
+                    this.querySelector('.custom-checkbox').classList.add('checked');
+
+                    // Update selected option
+                    selectedOption = this.dataset.option;
+                    updatePaymentMethod();
+                });
+            });
+        }
+
+        // Update payment method display
+        function updatePaymentMethod() {
+            let methodName = '';
+            switch(selectedOption) {
+                case 'paybill':
+                    methodName = 'M-Pesa Paybill';
+                    break;
+                case 'till':
+                    methodName = 'M-Pesa Till Number';
+                    break;
+                case 'buygoods':
+                    methodName = 'M-Pesa Buy Goods';
+                    break;
+                case 'pochi':
+                    methodName = 'Pochi La Biashara';
+                    break;
+            }
+            document.getElementById('summaryMethod').textContent = methodName;
+        }
+
+        // Step navigation
+        function nextStep() {
+            const currentStepEl = document.getElementById(`step${currentStep}`);
+            currentStepEl.classList.remove('active');
+            currentStepEl.classList.add('hidden');
+
+            // Update step indicators
+            updateStepIndicators(currentStep, 'completed');
+
+            currentStep++;
+
+            if (currentStep > 4) currentStep = 4;
+
+            const nextStepEl = document.getElementById(`step${currentStep}`);
+            nextStepEl.classList.remove('hidden');
+            nextStepEl.classList.add('active');
+
+            // Update step indicators
+            updateStepIndicators(currentStep, 'active');
+
+            // Scroll to top of donation card
+            document.querySelector('.donation-card').scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+
+        function prevStep() {
+            const currentStepEl = document.getElementById(`step${currentStep}`);
+            currentStepEl.classList.remove('active');
+            currentStepEl.classList.add('hidden');
+
+            // Update step indicators
+            updateStepIndicators(currentStep, '');
+
+            currentStep--;
+
+            if (currentStep < 1) currentStep = 1;
+
+            const prevStepEl = document.getElementById(`step${currentStep}`);
+            prevStepEl.classList.remove('hidden');
+            prevStepEl.classList.add('active');
+
+            // Update step indicators
+            updateStepIndicators(currentStep, 'active');
+
+            // Scroll to top of donation card
+            document.querySelector('.donation-card').scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+
+        function updateStepIndicators(step, status) {
+            const indicators = document.querySelectorAll('.step-indicator');
+
+            indicators.forEach((indicator, index) => {
+                const stepNumber = index + 1;
+
+                // Reset all indicators
+                indicator.classList.remove('active', 'completed');
+
+                // Update based on status
+                if (stepNumber < step) {
+                    indicator.classList.add('completed');
+                } else if (stepNumber === step && status) {
+                    indicator.classList.add(status);
+                }
+
+                // Update step labels
+                const stepLabel = indicator.nextElementSibling;
+                if (stepLabel && stepLabel.tagName === 'SPAN') {
+                    if (stepNumber < step) {
+                        stepLabel.classList.remove('text-gray-500');
+                        stepLabel.classList.add('text-gray-800');
+                    } else if (stepNumber === step && status === 'active') {
+                        stepLabel.classList.remove('text-gray-500');
+                        stepLabel.classList.add('text-gray-800');
+                    } else {
+                        stepLabel.classList.add('text-gray-500');
+                        stepLabel.classList.remove('text-gray-800');
+                    }
+                }
+            });
+        }
+
+        // Complete donation (demo)
+        function completeDonation() {
+            // Simulate processing delay
+            const button = event.target;
+            const originalText = button.innerHTML;
+            button.innerHTML = '<i class="fas fa-spinner fa-spin"></i><span>Processing...</span>';
+            button.disabled = true;
+
+            setTimeout(() => {
+                nextStep();
+                button.innerHTML = originalText;
+                button.disabled = false;
+
+                // Show success notification
+                showNotification('Thank you! Your donation has been processed successfully.', 'success');
+            }, 2000);
+        }
+
+        // Download receipt (demo)
+        function downloadReceipt() {
+            showNotification('Receipt downloaded successfully!', 'success');
+
+            // In a real implementation, this would download a PDF
+            console.log('Receipt download triggered');
+        }
+
+        // Share donation
+        function shareDonation() {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'I just donated to Harold Mbati Foundation',
+                    text: 'I donated to support community development in Kenya. Join me in making a difference!',
+                    url: window.location.href
+                });
+            } else {
+                // Fallback for browsers that don't support Web Share API
+                const shareText = `I donated to Harold Mbati Foundation! Support community development: ${window.location.href}`;
+                navigator.clipboard.writeText(shareText).then(() => {
+                    showNotification('Share link copied to clipboard!', 'success');
+                });
+            }
+        }
+
+        // Show notification
+        function showNotification(message, type = 'success') {
+            // Create notification element
+            const notification = document.createElement('div');
+            notification.className = `fixed top-4 right-4 z-50 px-6 py-4 rounded-lg shadow-lg ${
+                type === 'success' ? 'bg-green-500 text-white' : 'bg-red-500 text-white'
+            }`;
+            notification.innerHTML = `
+                <div class="flex items-center gap-3">
+                    <i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-circle'}"></i>
+                    <span>${message}</span>
+                </div>
+            `;
+
+            document.body.appendChild(notification);
+
+            // Remove notification after 5 seconds
+            setTimeout(() => {
+                notification.style.opacity = '0';
+                notification.style.transition = 'opacity 0.5s ease';
+                setTimeout(() => notification.remove(), 500);
+            }, 5000);
+        }
+
+        // Show specific tab (for CTA button)
+        function showTab(tabId) {
+            // Reset to step 1
+            while (currentStep > 1) {
+                prevStep();
+            }
+
+            // Update option displays
+            updatePaymentMethod();
+
+            // Scroll to donation section
+            document.getElementById(tabId).scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+    </script>

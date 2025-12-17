@@ -125,10 +125,19 @@ try {
         name VARCHAR(255) NOT NULL,
         email VARCHAR(255) NOT NULL,
         phone VARCHAR(20),
+        subject VARCHAR(100),
         message TEXT NOT NULL,
         is_read BOOLEAN DEFAULT FALSE,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     )");
+
+    // Check and add missing columns
+    $stmt = $pdo->query("DESCRIBE contacts");
+    $columns = $stmt->fetchAll(PDO::FETCH_COLUMN, 0);
+
+    if (!in_array('subject', $columns)) {
+        $pdo->exec("ALTER TABLE contacts ADD COLUMN subject VARCHAR(100) AFTER phone");
+    }
 
     // Insert default admin if not exists
     $hashed = password_hash('HaroldMbati2024!', PASSWORD_DEFAULT);

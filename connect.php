@@ -48,17 +48,17 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
                             <label class="block text-gray-700 mb-2">Full Name *</label>
-                            <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent" required>
+                            <input type="text" name="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent" required>
                         </div>
                         <div>
                             <label class="block text-gray-700 mb-2">Email Address *</label>
-                            <input type="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent" required>
+                            <input type="email" name="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent" required>
                         </div>
                     </div>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
                             <label class="block text-gray-700 mb-2">Phone Number</label>
-                            <input type="tel" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent">
+                            <input type="tel" name="phone" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent">
                         </div>
                         <div>
                             <label class="block text-gray-700 mb-2">Subject *</label>
@@ -75,7 +75,7 @@
                     </div>
                     <div>
                         <label class="block text-gray-700 mb-2">Message *</label>
-                        <textarea rows="8" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent resize-vertical" placeholder="Please provide detailed information about your inquiry..." required></textarea>
+                        <textarea rows="8" name="message" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent resize-vertical" placeholder="Please provide detailed information about your inquiry..." required></textarea>
                     </div>
                     <div class="flex items-center">
                         <input type="checkbox" id="newsletter" class="mr-3">
@@ -128,3 +128,88 @@
         </div>
     </div>
 </section>
+
+<script>
+// Contact form submission
+document.addEventListener('DOMContentLoaded', function() {
+    const contactForm = document.querySelector('#connect form');
+
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const formData = new FormData(this);
+
+            // Show loading state
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i><span>Sending...</span>';
+            submitBtn.disabled = true;
+
+            // Add action to form data
+            const data = new FormData(this);
+            data.append('action', 'add_contact');
+
+            fetch('admin.php', {
+                method: 'POST',
+                body: data
+            })
+            .then(response => response.json())
+            .then(result => {
+                if (result.success) {
+                    // Show success message
+                    showNotification('Your message has been sent successfully! We will get back to you within 24 hours.', 'success');
+
+                    // Reset form
+                    this.reset();
+                } else {
+                    showNotification('Sorry, there was an error sending your message. Please try again.', 'error');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                showNotification('Sorry, there was an error sending your message. Please try again.', 'error');
+            })
+            .finally(() => {
+                // Reset button
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            });
+        });
+    }
+});
+
+// Notification function
+function showNotification(message, type = 'success') {
+    // Create notification element
+    const notification = document.createElement('div');
+    notification.className = `fixed top-4 right-4 z-50 px-6 py-4 rounded-lg shadow-2xl border-l-4 transform translate-x-full transition-all duration-300 ${
+        type === 'success' ? 'bg-green-500 text-white border-green-300' : 'bg-red-500 text-white border-red-300'
+    }`;
+    notification.innerHTML = `
+        <div class="flex items-center gap-3">
+            <i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-circle'} text-xl"></i>
+            <div class="flex-1">
+                <p class="font-semibold">${type === 'success' ? 'Success!' : 'Error!'}</p>
+                <p class="text-sm opacity-90">${message}</p>
+            </div>
+            <button onclick="this.parentElement.parentElement.remove()" class="text-white/70 hover:text-white ml-2">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+    `;
+
+    document.body.appendChild(notification);
+
+    // Animate in
+    setTimeout(() => {
+        notification.classList.remove('translate-x-full');
+    }, 10);
+
+    // Auto remove after 6 seconds
+    setTimeout(() => {
+        notification.classList.add('translate-x-full');
+        setTimeout(() => notification.remove(), 300);
+    }, 6000);
+}
+</script>

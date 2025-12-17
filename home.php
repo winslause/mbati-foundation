@@ -54,10 +54,10 @@
                     <span class="italic">Discover Our Programs</span>
                     <i class="fas fa-arrow-right ml-3 group-hover:translate-x-2 transition-transform"></i>
                 </a>
-                <a href="index.php?page=donate"
+                <a href="index.php?page=gallery"
                    class="px-8 py-4 rounded-full text-white font-medium text-lg flex items-center justify-center sm:justify-start border-2 border-accent hover:bg-accent/20 transition-all duration-300 group w-full sm:w-auto">
-                    <i class="fas fa-heart mr-3 text-accent group-hover:text-white transition-colors"></i>
-                    <span class="italic">Uphold our mission</span>
+                    <i class="fas fa-images mr-3 text-accent group-hover:text-white transition-colors"></i>
+                    <span class="italic">View our gallery</span>
                 </a>
             </div>
 

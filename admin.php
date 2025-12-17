@@ -109,6 +109,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
                 echo json_encode(['success' => true]);
                 break;
 
+            case 'add_contact':
+                $stmt = $pdo->prepare("INSERT INTO contacts (name, email, phone, subject, message, is_read) VALUES (?, ?, ?, ?, ?, ?)");
+                $stmt->execute([
+                    $_POST['name'], $_POST['email'], $_POST['phone'] ?? '', $_POST['subject'] ?? '', $_POST['message'], FALSE
+                ]);
+                echo json_encode(['success' => true, 'id' => $pdo->lastInsertId()]);
+                break;
+
             case 'get_categories':
                 $stmt = $pdo->query("SELECT * FROM categories ORDER BY name");
                 $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -1009,7 +1017,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
                                     </div>
                                     <div>
                                         <h4 class="font-bold text-gray-800 mb-1">Upload Images</h4>
-                                        <<p class="text-gray-600 text-sm">Add photos to the gallery</p>
+                                        <p class="text-gray-600 text-sm">Add photos to the gallery</p>
                                     </div>
                                 </div>
                             </button>
@@ -2392,6 +2400,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
                                 <div>
                                     <h4 class="font-medium">${contact.name}</h4>
                                     <p class="text-gray-600 text-sm">${contact.email} • ${contact.phone || 'No phone'}</p>
+                                    ${contact.subject ? `<p class="text-blue-600 text-sm font-medium">Subject: ${contact.subject}</p>` : ''}
                                 </div>
                                 <span class="px-2 py-1 bg-${statusColor}-100 text-${statusColor}-600 text-xs rounded-full">${statusClass}</span>
                             </div>
