@@ -343,7 +343,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <input type="checkbox" id="remember" class="mr-2">
                         <span class="text-sm text-gray-600">Remember me</span>
                     </label>
-                    <a href="#" class="text-sm text-accent hover:underline" onclick="showForgotPassword()">
+                    <a href="#" class="text-sm text-accent hover:underline" onclick="showForgotPassword()" style="display: none!important">
                         Forgot password?
                     </a>
                 </div>

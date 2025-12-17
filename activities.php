@@ -450,8 +450,8 @@
                                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
                                     <div>
                                         <div class="w-24 h-24 rounded-full overflow-hidden mb-6 border-4 border-white/30">
-                                            <img src="https://images.unsplash.com/photo-1544725176-7c40e5a71c5e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
-                                                 alt="James Omondi"
+                                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+                                                 alt="Kiprop Cheptoo"
                                                  class="w-full h-full object-cover">
                                         </div>
                                         <h3 class="font-heading text-2xl font-bold text-white mb-4">From Trainee to Employer</h3>
@@ -460,7 +460,7 @@
                                         </p>
                                         <div class="flex items-center justify-between">
                                             <div>
-                                                <div class="font-heading font-bold text-white">James Omondi</div>
+                                                <div class="font-heading font-bold text-white">Kiprop Cheptoo</div>
                                                 <div class="text-white/70 text-sm">Youth Entrepreneurship Program Graduate</div>
                                             </div>
                                             <span class="px-3 py-1 bg-accent/20 text-accent text-xs font-medium rounded-full">Youth Empowerment</span>
@@ -507,8 +507,8 @@
                                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
                                     <div>
                                         <div class="w-24 h-24 rounded-full overflow-hidden mb-6 border-4 border-white/30">
-                                            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
-                                                 alt="Mary Achieng"
+                                            <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+                                                 alt="Grace Wanjiku"
                                                  class="w-full h-full object-cover">
                                         </div>
                                         <h3 class="font-heading text-2xl font-bold text-white mb-4">Healthy Mother, Healthy Child</h3>
@@ -517,7 +517,7 @@
                                         </p>
                                         <div class="flex items-center justify-between">
                                             <div>
-                                                <div class="font-heading font-bold text-white">Mary Achieng</div>
+                                                <div class="font-heading font-bold text-white">Grace Wanjiku</div>
                                                 <div class="text-white/70 text-sm">Mother & Child Care Program Beneficiary</div>
                                             </div>
                                             <span class="px-3 py-1 bg-pink-500/30 text-pink-300 text-xs font-medium rounded-full">Mother & Child Care</span>
@@ -564,8 +564,8 @@
                                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
                                     <div>
                                         <div class="w-24 h-24 rounded-full overflow-hidden mb-6 border-4 border-white/30">
-                                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
-                                                 alt="David Okoth"
+                                            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+                                                 alt="Samuel Kiprotich"
                                                  class="w-full h-full object-cover">
                                         </div>
                                         <h3 class="font-heading text-2xl font-bold text-white mb-4">From Football Pitch to Academy</h3>
@@ -574,7 +574,7 @@
                                         </p>
                                         <div class="flex items-center justify-between">
                                             <div>
-                                                <div class="font-heading font-bold text-white">David Okoth</div>
+                                                <div class="font-heading font-bold text-white">Samuel Kiprotich</div>
                                                 <div class="text-white/70 text-sm">Champions Cup Talent Scouted</div>
                                             </div>
                                             <span class="px-3 py-1 bg-amber-500/30 text-amber-300 text-xs font-medium rounded-full">Sports Development</span>
@@ -657,6 +657,32 @@
             </div>
         </section>
 
+    </div>
+
+    <!-- Activity Details Modal -->
+    <div id="activityModal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="p-8">
+                <div class="flex justify-between items-center mb-8">
+                    <h3 class="font-heading text-3xl font-bold text-primary" id="modal-activity-title">Activity Details</h3>
+                    <button onclick="closeActivityModal('activityModal')" class="text-gray-400 hover:text-gray-600">
+                        <i class="fas fa-times text-3xl"></i>
+                    </button>
+                </div>
+
+                <div id="modal-activity-content">
+                    <!-- Activity details will be loaded here -->
+                    <div class="animate-pulse">
+                        <div class="h-64 bg-gray-200 rounded-2xl mb-6"></div>
+                        <div class="space-y-4">
+                            <div class="h-4 bg-gray-200 rounded w-3/4"></div>
+                            <div class="h-4 bg-gray-200 rounded w-1/2"></div>
+                            <div class="h-4 bg-gray-200 rounded w-5/6"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- Scripts -->
@@ -792,7 +818,7 @@
             const categoryBadge = getCategoryBadge(activity.category_name);
 
             card.innerHTML = `
-                <div class="h-48 overflow-hidden">
+                <div class="h-36 overflow-hidden">
                     <img src="${activity.image || 'https://images.unsplash.com/photo-1542744095-fcf48d80b0fd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'}"
                          alt="${activity.title}"
                          class="w-full h-full object-cover hover:scale-110 transition-transform duration-700">
@@ -889,8 +915,94 @@
 
         // Activity Modal Functions
         function openActivityModal(activityId) {
-            // For now, just show an alert. In a full implementation, you'd fetch activity details and show a modal
-            alert('Activity details modal would open here for activity ID: ' + activityId);
+            const modal = document.getElementById('activityModal');
+            const content = document.getElementById('modal-activity-content');
+            const title = document.getElementById('modal-activity-title');
+
+            // Show loading state
+            content.innerHTML = `
+                <div class="animate-pulse">
+                    <div class="h-64 bg-gray-200 rounded-2xl mb-6"></div>
+                    <div class="space-y-4">
+                        <div class="h-4 bg-gray-200 rounded w-3/4"></div>
+                        <div class="h-4 bg-gray-200 rounded w-1/2"></div>
+                        <div class="h-4 bg-gray-200 rounded w-5/6"></div>
+                    </div>
+                </div>
+            `;
+
+            // Show modal
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+
+            // Fetch activity details
+            fetch(`gallery_handler.php?action=get_activity&id=${activityId}`)
+            .then(response => response.json())
+            .then(data => {
+                if (data) {
+                    const statusClass = getStatusClass(data.status);
+                    const categoryBadge = getCategoryBadge(data.category_name);
+
+                    content.innerHTML = `
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                            <div>
+                                <div class="h-64 lg:h-80 rounded-2xl overflow-hidden mb-6">
+                                    <img src="${data.image || 'https://images.unsplash.com/photo-1542744095-fcf48d80b0fd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'}"
+                                         alt="${data.title}"
+                                         class="w-full h-full object-cover">
+                                </div>
+                                <div class="flex items-center gap-4 mb-6">
+                                    <span class="status-${data.status.toLowerCase()} px-4 py-2 rounded-full text-sm font-medium">${data.status}</span>
+                                    ${categoryBadge}
+                                </div>
+                            </div>
+                            <div>
+                                <div class="mb-6">
+                                    <h4 class="font-heading text-xl font-bold text-primary mb-2">Activity Details</h4>
+                                    <div class="space-y-3 text-gray-600">
+                                        <div class="flex items-center gap-3">
+                                            <i class="fas fa-calendar-alt text-accent w-5"></i>
+                                            <span><strong>Start Date:</strong> ${data.start_date ? new Date(data.start_date).toLocaleDateString() : 'Not specified'}</span>
+                                        </div>
+                                        <div class="flex items-center gap-3">
+                                            <i class="fas fa-calendar-check text-accent w-5"></i>
+                                            <span><strong>End Date:</strong> ${data.end_date ? new Date(data.end_date).toLocaleDateString() : 'Not specified'}</span>
+                                        </div>
+                                        <div class="flex items-center gap-3">
+                                            <i class="fas fa-map-marker-alt text-accent w-5"></i>
+                                            <span><strong>Location:</strong> ${data.location || 'Not specified'}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-8">
+                            <h4 class="font-heading text-xl font-bold text-primary mb-4">Description</h4>
+                            <p class="text-gray-700 leading-relaxed">${data.description || 'No description available.'}</p>
+                        </div>
+                    `;
+
+                    title.textContent = data.title;
+                } else {
+                    content.innerHTML = `
+                        <div class="text-center py-12">
+                            <i class="fas fa-exclamation-triangle text-6xl text-gray-300 mb-4"></i>
+                            <h3 class="font-heading text-2xl font-bold text-gray-600 mb-2">Activity Not Found</h3>
+                            <p class="text-gray-500">The requested activity could not be found.</p>
+                        </div>
+                    `;
+                }
+            })
+            .catch(error => {
+                console.error('Error loading activity:', error);
+                content.innerHTML = `
+                    <div class="text-center py-12">
+                        <i class="fas fa-exclamation-triangle text-6xl text-red-300 mb-4"></i>
+                        <h3 class="font-heading text-2xl font-bold text-red-600 mb-2">Error Loading Activity</h3>
+                        <p class="text-red-500">There was an error loading the activity details. Please try again.</p>
+                    </div>
+                `;
+            });
         }
 
         function closeActivityModal(modalId) {

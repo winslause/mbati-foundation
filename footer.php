@@ -46,6 +46,9 @@
                     <li><a href="index.php?page=connect" class="text-gray-300 hover:text-accent transition-colors flex items-center group">
                         <i class="fas fa-chevron-right text-xs mr-3 text-accent group-hover:translate-x-1 transition-transform"></i> Connect
                     </a></li>
+                    <li><a href="login.php" class="text-gray-300 hover:text-accent transition-colors flex items-center group">
+                        <i class="fas fa-chevron-right text-xs mr-3 text-accent group-hover:translate-x-1 transition-transform"></i> Admin
+                    </a></li>
                 </ul>
             </div>
 
@@ -89,7 +92,7 @@
 
             <!-- Contact Info -->
             <div class="animate-fade-in" style="animation-delay: 0.3s">
-                <h4 class="font-heading text-xl font-semibold mb-6 text-white">Contact Us</h4>
+                <h4 class="font-heading text-xl font-semibold mb-6 text-white"><a href="index.php?page=connect" class="hover:text-accent transition-colors">Contact Us</a></h4>
                 <ul class="space-y-4">
                     <li class="flex items-start group">
                         <div class="w-10 h-10 rounded-lg bg-primary/50 flex items-center justify-center mr-3 group-hover:bg-accent/20 transition-colors">

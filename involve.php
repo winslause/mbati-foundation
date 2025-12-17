@@ -40,9 +40,9 @@
                         <span>Administrative support</span>
                     </li>
                 </ul>
-                <button class="w-full bg-accent text-white py-3 rounded-lg hover:bg-yellow-600 transition-colors">
+                <a href="#connect" class="block w-full bg-accent text-white py-3 rounded-lg hover:bg-yellow-600 transition-colors text-center">
                     <span>Contact Us to Volunteer</span>
-                </button>
+                </a>
             </div>
 
             <!-- Donations -->
@@ -104,9 +104,9 @@
                         <span>Government agencies</span>
                     </li>
                 </ul>
-                <button class="w-full bg-accent text-white py-3 rounded-lg hover:bg-yellow-600 transition-colors">
+                <a href="#connect" class="block w-full bg-accent text-white py-3 rounded-lg hover:bg-yellow-600 transition-colors text-center">
                     <span>Explore Partnerships</span>
-                </button>
+                </a>
             </div>
         </div>
 
@@ -121,10 +121,10 @@
                     <i class="fas fa-heart mr-2"></i>
                     <span>Donate Now</span>
                 </a>
-                <button class="inline-flex items-center px-8 py-4 border-2 border-white text-white rounded-lg hover:bg-white hover:text-primary transition-colors font-semibold">
+                <a href="#connect" class="inline-flex items-center px-8 py-4 border-2 border-white text-white rounded-lg hover:bg-white hover:text-primary transition-colors font-semibold">
                     <i class="fas fa-envelope mr-2"></i>
                     <span>Contact Us</span>
-                </button>
+                </a>
             </div>
         </div>
 

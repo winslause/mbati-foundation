@@ -29,6 +29,9 @@
                 <a href="index.php?page=involve" class="nav-link px-5 py-3 font-medium text-gray-200 hover:text-white transition-colors">
                     <i class="fas fa-users mr-2"></i>Get Involved
                 </a>
+                <a href="index.php?page=connect" class="nav-link px-5 py-3 font-medium text-gray-200 hover:text-white transition-colors">
+                    <i class="fas fa-envelope mr-2"></i>Contact
+                </a>
 
                 <!-- Donate Button -->
                 <a href="index.php?page=donate" class="donate-btn ml-4 px-8 py-3 rounded-full text-white font-bold text-lg flex items-center">
@@ -58,6 +61,9 @@
                 </a>
                 <a href="index.php?page=involve" class="block px-6 py-4 font-medium text-white hover:bg-accent/20 hover:text-accent transition-colors border-l-4 border-transparent hover:border-accent">
                     <i class="fas fa-users mr-3"></i>Get Involved
+                </a>
+                <a href="index.php?page=connect" class="block px-6 py-4 font-medium text-white hover:bg-accent/20 hover:text-accent transition-colors border-l-4 border-transparent hover:border-accent">
+                    <i class="fas fa-envelope mr-3"></i>Contact
                 </a>
                 <div class="px-6 py-4">
                     <a href="index.php?page=donate" class="donate-btn block text-center px-6 py-4 rounded-full text-white font-bold text-lg">

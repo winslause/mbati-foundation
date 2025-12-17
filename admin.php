@@ -413,6 +413,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
                 echo json_encode(['success' => true, 'id' => $pdo->lastInsertId()]);
                 break;
 
+            case 'delete_gallery_image':
+                $stmt = $pdo->prepare("SELECT image_path FROM gallery WHERE id = ?");
+                $stmt->execute([$_POST['id']]);
+                $image = $stmt->fetch(PDO::FETCH_ASSOC);
+
+                if ($image && file_exists($image['image_path'])) {
+                    unlink($image['image_path']);
+                }
+
+                $stmt = $pdo->prepare("DELETE FROM gallery WHERE id = ?");
+                $stmt->execute([$_POST['id']]);
+                echo json_encode(['success' => true]);
+                break;
+
             // Highlights CRUD
             case 'get_highlights':
                 $stmt = $pdo->query("SELECT * FROM highlights ORDER BY sort_order, created_at DESC");
@@ -504,6 +518,48 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
                 }
 
                 $stmt = $pdo->prepare("DELETE FROM highlights WHERE id = ?");
+                $stmt->execute([$_POST['id']]);
+                echo json_encode(['success' => true]);
+                break;
+
+            case 'change_password':
+                // Get current admin id from session
+                $admin_id = $_SESSION['admin_id'];
+
+                // Verify current password
+                $stmt = $pdo->prepare("SELECT password FROM admins WHERE id = ?");
+                $stmt->execute([$admin_id]);
+                $admin = $stmt->fetch();
+
+                if (!$admin || !password_verify($_POST['current_password'], $admin['password'])) {
+                    echo json_encode(['success' => false, 'error' => 'Current password is incorrect']);
+                    exit;
+                }
+
+                // Check if new password is different
+                if ($_POST['new_password'] === $_POST['current_password']) {
+                    echo json_encode(['success' => false, 'error' => 'New password must be different from current password']);
+                    exit;
+                }
+
+                // Hash new password
+                $new_hashed = password_hash($_POST['new_password'], PASSWORD_DEFAULT);
+
+                // Update password
+                $stmt = $pdo->prepare("UPDATE admins SET password = ? WHERE id = ?");
+                $stmt->execute([$new_hashed, $admin_id]);
+
+                if ($stmt->rowCount() === 0) {
+                    echo json_encode(['success' => false, 'error' => 'Failed to update password']);
+                    exit;
+                }
+
+                session_destroy();
+                echo json_encode(['success' => true]);
+                break;
+
+            case 'delete_donation':
+                $stmt = $pdo->prepare("DELETE FROM donations WHERE id = ?");
                 $stmt->execute([$_POST['id']]);
                 echo json_encode(['success' => true]);
                 break;
@@ -823,7 +879,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
     <!-- Main Container -->
     <div class="flex min-h-screen">
         <!-- Sidebar -->
-        <aside class="sidebar w-64 min-h-screen fixed lg:relative z-50">
+        <aside class="sidebar w-64 min-h-screen fixed lg:relative z-50 flex flex-col">
             <!-- Logo -->
             <div class="p-6 border-b border-white/10">
                 <div class="flex items-center gap-3">
@@ -851,7 +907,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
             </div>
             
             <!-- Navigation -->
-            <nav class="p-4 space-y-1">
+            <nav class="p-4 space-y-1 flex-1 overflow-y-auto">
                 <a href="#" class="sidebar-item active flex items-center gap-3 p-3 text-white" onclick="showTab('dashboard')">
                     <i class="fas fa-tachometer-alt w-5"></i>
                     <span>Dashboard</span>
@@ -880,11 +936,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
                     <span>Contact Messages</span>
                     <span class="ml-auto bg-accent/20 text-accent text-xs px-2 py-1 rounded-full contact-count">12</span>
                 </a>
+                
+                <a href="#" class="sidebar-item flex items-center gap-3 p-3 text-white/80 hover:text-white" onclick="showTab('settings')">
+                    <i class="fas fa-cog w-5"></i>
+                    <span>Settings</span>
+                </a>
             </nav>
             
             <!-- Footer -->
-            <div class="absolute bottom-0 left-0 right-0 p-6 border-t border-white/10">
-                <button onclick="logout()" class="sidebar-item flex items-center gap-3 p-3 text-white/80 hover:text-white w-full">
+            <div class="p-6 border-t border-white/10">
+                <button onclick="logout()" class="sidebar-item flex items-center gap-3 p-3 text-white w-full bg-red-600/20 hover:bg-red-600/30">
                     <i class="fas fa-sign-out-alt w-5"></i>
                     <span>Logout</span>
                 </button>
@@ -1254,6 +1315,58 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
                     <!-- Messages List -->
                     <div class="space-y-4" id="contacts-list">
                         <!-- Messages will be loaded here -->
+                    </div>
+                </div>
+                <!-- Settings Tab -->
+                <div id="settings-tab" class="tab-content">
+                    <div class="flex items-center justify-between mb-6">
+                        <div>
+                            <h3 class="font-bold text-gray-800 text-lg">Settings</h3>
+                            <p class="text-gray-600 text-sm">Manage your account settings</p>
+                        </div>
+                    </div>
+                    <div class="dashboard-card p-6 max-w-md">
+                        <h4 class="font-bold text-gray-800 mb-4">Change Password</h4>
+                        <form id="changePasswordForm">
+                            <div class="space-y-4">
+                                <div>
+                                    <label class="block text-gray-700 mb-2">Current Password</label>
+                                    <div class="relative">
+                                        <input type="password" name="current_password" class="form-input pr-10" required>
+                                        <button type="button" class="absolute right-3 top-3 text-gray-400 hover:text-gray-600" onclick="togglePassword('current_password')">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="block text-gray-700 mb-2">New Password</label>
+                                    <div class="relative">
+                                        <input type="password" name="new_password" class="form-input pr-10" required minlength="8">
+                                        <button type="button" class="absolute right-3 top-3 text-gray-400 hover:text-gray-600" onclick="togglePassword('new_password')">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="block text-gray-700 mb-2">Confirm New Password</label>
+                                    <div class="relative">
+                                        <input type="password" name="confirm_password" class="form-input pr-10" required minlength="8">
+                                        <button type="button" class="absolute right-3 top-3 text-gray-400 hover:text-gray-600" onclick="togglePassword('confirm_password')">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <button type="submit" class="px-6 py-3 bg-accent text-white rounded-lg hover:bg-yellow-600">
+                                    Change Password
+                                </button>
+                            </div>
+                        </form>
+
+                        <div class="mt-8 pt-6 border-t border-gray-200">
+                            <button onclick="logout()" class="px-6 py-3 bg-red-600 text-white rounded-lg">
+                                <i class="fas fa-sign-out-alt mr-2"></i>Logout
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1878,7 +1991,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
             'activities': 'Manage Activities',
             'gallery': 'Manage Gallery',
             'donations': 'Manage Donations',
-            'contacts': 'Contact Messages'
+            'contacts': 'Contact Messages',
+            'settings': 'Settings'
         };
         
         // Show tab function
@@ -2016,6 +2130,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
                     break;
                 case 'contacts':
                     loadContacts();
+                    break;
+                case 'settings':
                     break;
             }
         }
@@ -2330,9 +2446,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
                                      alt="${image.title || 'Gallery'}"
                                      class="w-full h-full object-cover hover:scale-110 transition-transform duration-500">
                             </div>
-                            <div class="p-2">
-                                <p class="text-xs font-medium truncate">${image.title || 'Untitled'}</p>
-                                <p class="text-gray-500 text-xs">${new Date(image.uploaded_at).toLocaleDateString()}</p>
+                            <div class="p-2 flex justify-between items-center">
+                                <div>
+                                    <p class="text-xs font-medium truncate">${image.title || 'Untitled'}</p>
+                                    <p class="text-gray-500 text-xs">${new Date(image.uploaded_at).toLocaleDateString()}</p>
+                                </div>
+                                <button class="text-red-600 hover:text-red-800" onclick="deleteGalleryImage(${image.id}, '${image.title || 'this image'}')">
+                                    <i class="fas fa-trash text-sm"></i>
+                                </button>
                             </div>
                         </div>
                     `;
@@ -2377,9 +2498,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
                             <td>${new Date(donation.donation_date).toLocaleDateString()}</td>
                             <td><span class="status-badge ${statusClass}">${donation.status}</span></td>
                             <td>
-                                <button class="text-blue-600 hover:text-blue-800 text-sm">
-                                    View Details
-                                </button>
+                                <div class="flex items-center gap-2">
+                                    <button class="text-blue-600 hover:text-blue-800 text-sm">
+                                        View Details
+                                    </button>
+                                    <button class="text-red-600 hover:text-red-800 text-sm" onclick="deleteDonation(${donation.id}, '${donation.donor_name}')">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
                             </td>
                         </tr>
                     `;
@@ -3048,6 +3174,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
                     }
                 });
             });
+
+            // Handle password change form
+            document.getElementById('changePasswordForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const formData = new FormData(this);
+                formData.append('action', 'change_password');
+
+                fetch('admin.php', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        showNotification('Password changed successfully! You will be logged out.', 'success');
+                        setTimeout(() => {
+                            window.location.href = 'login.php';
+                        }, 2000);
+                    } else {
+                        showNotification(data.error || 'Error changing password', 'error');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    showNotification('Error changing password', 'error');
+                });
+            });
         });
         
         // Gallery management functions
@@ -3344,6 +3497,54 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
             }
         }
 
+        function deleteGalleryImage(id, title) {
+            if (confirm(`Are you sure you want to delete "${title}"?`)) {
+                fetch('admin.php', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                    body: `action=delete_gallery_image&id=${id}`
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        showNotification('Image deleted successfully!', 'success');
+                        loadGalleryImages();
+                        loadDashboardStats();
+                    } else {
+                        showNotification(data.error || 'Error deleting image', 'error');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    showNotification('Error deleting image', 'error');
+                });
+            }
+        }
+
+        function deleteDonation(id, donorName) {
+            if (confirm(`Are you sure you want to delete the donation from "${donorName}"?`)) {
+                fetch('admin.php', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                    body: `action=delete_donation&id=${id}`
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        showNotification('Donation deleted successfully!', 'success');
+                        loadDonations();
+                        loadDashboardStats();
+                    } else {
+                        showNotification(data.error || 'Error deleting donation', 'error');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    showNotification('Error deleting donation', 'error');
+                });
+            }
+        }
+
         // Highlights management functions
         function loadHighlights() {
             fetch('admin.php', {
@@ -3481,6 +3682,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
             document.getElementById('linkField').style.display = type === 'link' ? 'block' : 'none';
         }
 
+        function togglePassword(fieldName) {
+            const input = document.querySelector(`input[name="${fieldName}"]`);
+            const icon = input.nextElementSibling.querySelector('i');
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.className = 'fas fa-eye-slash';
+            } else {
+                input.type = 'password';
+                icon.className = 'fas fa-eye';
+            }
+        }
+
         // Make functions global
         window.toggleSidebar = toggleSidebar;
         window.showTab = showTab;
@@ -3496,6 +3709,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
         window.loadAlbums = loadAlbums;
         window.loadHighlights = loadHighlights;
         window.manageAlbumImages = manageAlbumImages;
+        window.togglePassword = togglePassword;
+        window.deleteGalleryImage = deleteGalleryImage;
+        window.deleteDonation = deleteDonation;
     </script>
 </body>
 </html></content>

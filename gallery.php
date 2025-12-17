@@ -542,10 +542,10 @@ function renderGallery() {
         const galleryItem = document.createElement('div');
         galleryItem.className = `gallery-item animate-fade-in-up`;
         galleryItem.style.animationDelay = `${index * 0.1}s`;
-        galleryItem.setAttribute('data-src', `/mbati foundation/${item.image_path}`);
+        galleryItem.setAttribute('data-src', `${item.image_path}`);
 
         galleryItem.innerHTML = `
-            <img src="/mbati foundation/${item.image_path}" alt="${item.title || 'Gallery image'}" loading="lazy">
+            <img src="${item.image_path}" alt="${item.title || 'Gallery image'}" loading="lazy">
             <div class="gallery-overlay">
                 <h3 class="font-bold text-dark mb-1">${item.title || 'Untitled'}</h3>
                 <p class="text-gray-700 text-sm">${item.description || ''}</p>
@@ -755,10 +755,10 @@ function loadAlbumImages(albumId) {
                 images.forEach(image => {
                     const imageDiv = document.createElement('div');
                     imageDiv.className = 'gallery-item';
-                    imageDiv.setAttribute('data-src', `/mbati foundation/${image.image_path}`);
+                    imageDiv.setAttribute('data-src', `${image.image_path}`);
 
                     imageDiv.innerHTML = `
-                        <img src="/mbati foundation/${image.image_path}" alt="${image.title || 'Album image'}" class="w-full h-48 object-cover rounded-lg">
+                        <img src="${image.image_path}" alt="${image.title || 'Album image'}" class="w-full h-48 object-cover rounded-lg">
                         <div class="gallery-overlay">
                             <h3 class="font-bold text-dark mb-1">${image.title || 'Untitled'}</h3>
                             <p class="text-gray-700 text-sm">${image.description || ''}</p>

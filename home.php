@@ -381,7 +381,7 @@
                     <span>#WeValueYourSacrifice</span>
                 </div>
 
-                <a href="index.php?page=connect" class="hmf-card-button hmf-btn-volunteer">
+                <a href="#connect" class="hmf-card-button hmf-btn-volunteer">
                     <span>Reach Us Out</span>
                     <i class="fas fa-arrow-right"></i>
                 </a>
@@ -425,7 +425,7 @@
                     <span>#YourOpinionIsValued</span>
                 </div>
 
-                <a href="index.php?page=connect" class="hmf-card-button hmf-btn-contribution">
+                <a href="#connect" class="hmf-card-button hmf-btn-contribution">
                     <span>Share Your Idea</span>
                     <i class="fas fa-comment"></i>
                 </a>
@@ -478,7 +478,7 @@
                     <label for="hmf-contact-name" class="hmf-form-label">Full Name *</label>
                     <input type="text" id="hmf-contact-name" required
                            class="hmf-form-input"
-                           placeholder="John Doe">
+                           placeholder="John Kuria">
                 </div>
 
                 <div class="hmf-form-group">

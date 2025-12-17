@@ -99,6 +99,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                 echo json_encode(['success' => true, 'highlight' => $highlight]);
                 break;
 
+            case 'get_activity':
+                // Get single activity details
+                $activity_id = $_GET['id'] ?? 0;
+                if (!$activity_id) {
+                    echo json_encode(['success' => false, 'error' => 'Activity ID required']);
+                    break;
+                }
+
+                $stmt = $pdo->prepare("
+                    SELECT a.*, c.name as category_name
+                    FROM activities a
+                    LEFT JOIN categories c ON a.category_id = c.id
+                    WHERE a.id = ?
+                ");
+                $stmt->execute([$activity_id]);
+                $activity = $stmt->fetch(PDO::FETCH_ASSOC);
+
+                if ($activity) {
+                    echo json_encode($activity);
+                } else {
+                    echo json_encode(['success' => false, 'error' => 'Activity not found']);
+                }
+                break;
+
             default:
                 echo json_encode(['success' => false, 'error' => 'Invalid action']);
         }
