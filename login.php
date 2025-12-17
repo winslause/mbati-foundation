@@ -1,3 +1,37 @@
+<?php
+require 'config.php';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $input = json_decode(file_get_contents('php://input'), true);
+    $username = $input['username'] ?? '';
+    $password = $input['password'] ?? '';
+
+    header('Content-Type: application/json');
+
+    if (empty($username) || empty($password)) {
+        echo json_encode(['success' => false, 'message' => 'Username and password are required']);
+        exit;
+    }
+
+    try {
+        $stmt = $pdo->prepare("SELECT id, password FROM admins WHERE username = ?");
+        $stmt->execute([$username]);
+        $admin = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($admin && password_verify($password, $admin['password'])) {
+            session_start();
+            $_SESSION['admin_id'] = $admin['id'];
+            $_SESSION['admin_username'] = $username;
+            echo json_encode(['success' => true]);
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Invalid username or password']);
+        }
+    } catch (PDOException $e) {
+        echo json_encode(['success' => false, 'message' => 'Database error']);
+    }
+    exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -567,7 +601,6 @@
             
             const username = document.getElementById('username').value.trim();
             const password = document.getElementById('password').value.trim();
-            const remember = document.getElementById('remember').checked;
             
             // Reset errors
             document.getElementById('usernameError').style.display = 'none';
@@ -601,34 +634,26 @@
             btnText.style.display = 'none';
             btnLoading.classList.add('active');
             
-            // Simulate API call with delay
-            setTimeout(() => {
-                // Default credentials (for demo purposes)
-                const defaultUsername = 'admin';
-                const defaultPassword = 'HaroldMbati2024!';
-                
-                if (username === defaultUsername && password === defaultPassword) {
-                    // Successful login
+            // Send AJAX request to login.php
+            fetch('login.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    username: username,
+                    password: password
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
                     showNotification('Login successful! Redirecting to dashboard...', 'success');
-                    
-                    // Store login state if "Remember me" is checked
-                    if (remember) {
-                        localStorage.setItem('rememberMe', 'true');
-                        localStorage.setItem('username', username);
-                    } else {
-                        sessionStorage.setItem('loggedIn', 'true');
-                    }
-                    
-                    // Redirect to admin dashboard after 1.5 seconds
                     setTimeout(() => {
-                        window.location.href = 'admin.html';
+                        window.location.href = 'admin.php';
                     }, 1500);
                 } else {
-                    // Failed login
-                    btnText.style.display = 'inline';
-                    btnLoading.classList.remove('active');
-                    showNotification('Invalid username or password', 'error');
-                    
+                    showNotification(data.message || 'Invalid username or password', 'error');
                     // Shake animation for error
                     const form = document.getElementById('loginForm');
                     form.classList.add('animate-shake');
@@ -636,7 +661,15 @@
                         form.classList.remove('animate-shake');
                     }, 500);
                 }
-            }, 1500);
+                btnText.style.display = 'inline';
+                btnLoading.classList.remove('active');
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                showNotification('An error occurred. Please try again.', 'error');
+                btnText.style.display = 'inline';
+                btnLoading.classList.remove('active');
+            });
         });
         
         // Handle Forgot Password Form
@@ -658,15 +691,6 @@
         
         // Auto-fill remembered credentials
         document.addEventListener('DOMContentLoaded', function() {
-            // Check if credentials should be remembered
-            if (localStorage.getItem('rememberMe') === 'true') {
-                const savedUsername = localStorage.getItem('username');
-                if (savedUsername) {
-                    document.getElementById('username').value = savedUsername;
-                    document.getElementById('remember').checked = true;
-                }
-            }
-            
             // Add shake animation style
             const shakeStyle = document.createElement('style');
             shakeStyle.textContent = `
