@@ -564,6 +564,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
                 echo json_encode(['success' => true]);
                 break;
 
+            case 'delete_contact':
+                $stmt = $pdo->prepare("DELETE FROM contacts WHERE id = ?");
+                $stmt->execute([$_POST['id']]);
+                echo json_encode(['success' => true]);
+                break;
+
             default:
                 echo json_encode(['error' => 'Invalid action']);
         }
@@ -783,7 +789,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
         }
         
         /* Responsive */
-        @media (max-width: 768px) {
+        @media (max-width: 825px) {
             .sidebar {
                 transform: translateX(-100%);
                 position: fixed;
@@ -814,7 +820,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
             }
         }
         
-        @media (min-width: 769px) {
+        @media (min-width: 826px) {
             .sidebar {
                 transform: translateX(0);
             }
@@ -905,7 +911,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
                     </div>
                 </div>
             </div>
-            
+
             <!-- Navigation -->
             <nav class="p-4 space-y-1 flex-1 overflow-y-auto">
                 <a href="#" class="sidebar-item active flex items-center gap-3 p-3 text-white" onclick="showTab('dashboard')">
@@ -941,24 +947,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
                     <i class="fas fa-cog w-5"></i>
                     <span>Settings</span>
                 </a>
-            </nav>
-            
-            <!-- Footer -->
-            <div class="p-6 border-t border-white/10">
+
                 <button onclick="logout()" class="sidebar-item flex items-center gap-3 p-3 text-white w-full bg-red-600/20 hover:bg-red-600/30">
                     <i class="fas fa-sign-out-alt w-5"></i>
                     <span>Logout</span>
                 </button>
-            </div>
+            </nav>
         </aside>
         
         <!-- Mobile Menu Button -->
-        <button class="mobile-menu-btn fixed top-4 right-4 z-40 w-10 h-10 rounded-lg bg-accent text-black flex items-center justify-center lg:hidden shadow-lg" onclick="toggleSidebar()">
+        <button class="mobile-menu-btn fixed top-2 right-4 z-40 w-10 h-10 rounded-lg bg-accent text-black flex items-center justify-center lg:hidden shadow-lg" onclick="toggleSidebar()">
             <i class="fas fa-bars"></i>
         </button>
         
         <!-- Main Content -->
-        <main class="flex-1 lg:ml-0">
+        <main class="flex-1 lg:ml-0 overflow-x-hidden">
             <!-- Top Bar -->
             <header class="bg-white border-b border-gray-200 sticky top-0 z-30">
                 <div class="px-6 py-4">
@@ -970,10 +973,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
                         
                         <div class="flex items-center gap-4">
                             <!-- Add Activity Button -->
-                            <button class="px-4 py-2 bg-accent text-white rounded-lg hover:bg-yellow-600 transition-colors flex items-center gap-2" onclick="openModal('activityModal')">
+                            <!-- <button class="px-4 py-2 bg-accent text-white rounded-lg hover:bg-yellow-600 transition-colors flex items-center gap-2" onclick="openModal('activityModal')">
                                 <i class="fas fa-plus"></i>
                                 Add Activity
-                            </button>
+                            </button> -->
 
                             <!-- Search -->
                             <div class="hidden md:block">
@@ -1119,17 +1122,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
                     <div class="flex items-center justify-between mb-6">
                         <div>
                             <h3 class="font-bold text-gray-800 text-lg">Manage Activities</h3>
-                            <p class="text-gray-600 text-sm">Create, edit, and publish foundation activities</p>
+                            <!-- <p class="text-gray-600 text-sm">Create, edit, and publish foundation activities</p> -->
                         </div>
                         <div class="flex items-center gap-4">
                             <button class="px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors flex items-center gap-2" onclick="openModal('categoriesModal')">
                                 <i class="fas fa-tags"></i>
                                 Manage Categories
                             </button>
-                            <button class="px-4 py-2 bg-accent text-white rounded-lg hover:bg-yellow-600 transition-colors flex items-center gap-2" onclick="openModal('activityModal')">
+                            <!-- <button class="px-4 py-2 bg-accent text-white rounded-lg hover:bg-yellow-600 transition-colors flex items-center gap-2" onclick="openModal('activityModal')">
                                 <i class="fas fa-plus"></i>
                                 Add New Activity
-                            </button>
+                            </button> -->
                         </div>
                     </div>
 
@@ -1143,7 +1146,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
 
                     <!-- Activities Table -->
                     <div class="dashboard-card overflow-hidden">
-                        <div class="overflow-x-auto">
+                        <div class="table-responsive">
                             <table class="data-table">
                                 <thead>
                                     <tr>
@@ -2545,8 +2548,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
                                     <button class="px-3 py-1 bg-gray-100 text-gray-700 rounded text-sm hover:bg-gray-200" onclick="markAsRead(${contact.id})">
                                         Mark as Read
                                     </button>
-                                    <button class="px-3 py-1 bg-accent text-white rounded text-sm hover:bg-yellow-600">
+                                    <button class="px-3 py-1 bg-accent text-white rounded text-sm hover:bg-yellow-600" onclick="replyToContact(this.dataset.email)" data-email="${contact.email}">
                                         Reply
+                                    </button>
+                                    <button class="px-3 py-1 bg-red-100 text-red-600 rounded text-sm hover:bg-red-200" onclick="deleteContact(this.dataset.id, this.dataset.name)" data-id="${contact.id}" data-name="${contact.name}">
+                                        <i class="fas fa-trash mr-1"></i>Delete
                                     </button>
                                 </div>
                             </div>
@@ -3545,6 +3551,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
             }
         }
 
+        function replyToContact(email) {
+            window.open('https://mail.google.com/mail/?view=cm&fs=1&to=' + encodeURIComponent(email), '_blank');
+        }
+
+        function deleteContact(id, name) {
+            if (confirm(`Are you sure you want to delete the contact from "${name}"?`)) {
+                fetch('admin.php', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                    body: `action=delete_contact&id=${id}`
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        showNotification('Contact deleted successfully!', 'success');
+                        loadContacts();
+                        loadDashboardStats();
+                    } else {
+                        showNotification(data.error || 'Error deleting contact', 'error');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    showNotification('Error deleting contact', 'error');
+                });
+            }
+        }
+
         // Highlights management functions
         function loadHighlights() {
             fetch('admin.php', {
@@ -3712,6 +3746,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
         window.togglePassword = togglePassword;
         window.deleteGalleryImage = deleteGalleryImage;
         window.deleteDonation = deleteDonation;
+
+        window.replyToContact = replyToContact;
+
+        window.deleteContact = deleteContact;
     </script>
 </body>
 </html></content>

@@ -29,7 +29,7 @@
                 <a href="index.php?page=involve" class="nav-link px-5 py-3 font-medium text-gray-200 hover:text-white transition-colors">
                     <i class="fas fa-users mr-2"></i>Get Involved
                 </a>
-                <a href="index.php?page=connect" class="nav-link px-5 py-3 font-medium text-gray-200 hover:text-white transition-colors">
+                <a href="index.php?#connect" class="nav-link px-5 py-3 font-medium text-gray-200 hover:text-white transition-colors">
                     <i class="fas fa-envelope mr-2"></i>Contact
                 </a>
 
@@ -62,7 +62,7 @@
                 <a href="index.php?page=involve" class="block px-6 py-4 font-medium text-white hover:bg-accent/20 hover:text-accent transition-colors border-l-4 border-transparent hover:border-accent">
                     <i class="fas fa-users mr-3"></i>Get Involved
                 </a>
-                <a href="index.php?page=connect" class="block px-6 py-4 font-medium text-white hover:bg-accent/20 hover:text-accent transition-colors border-l-4 border-transparent hover:border-accent">
+                <a href="#connect" class="block px-6 py-4 font-medium text-white hover:bg-accent/20 hover:text-accent transition-colors border-l-4 border-transparent hover:border-accent">
                     <i class="fas fa-envelope mr-3"></i>Contact
                 </a>
                 <div class="px-6 py-4">

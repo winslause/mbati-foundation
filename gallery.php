@@ -851,8 +851,7 @@ function renderPhotoOfDay(highlight) {
                                 <i class="fas fa-camera text-white"></i>
                             </div>
                             <div>
-                                <h4 class="font-bold text-dark">Photographer's Note</h4>
-                                <p class="text-gray-600 text-sm">Captured by: ${highlight.title || 'James Mwangi'} • Luanda Constituency</p>
+                                
                             </div>
                         </div>
                     </div>
