@@ -1176,7 +1176,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
                     <div class="flex items-center justify-between mb-6">
                         <div>
                             <h3 class="font-bold text-gray-800 text-lg">Manage Gallery</h3>
-                            <p class="text-gray-600 text-sm">Upload and organize foundation content</p>
+                            <!-- <p class="text-gray-600 text-sm">Upload and organize foundation content</p> -->
                         </div>
                         <div class="flex items-center gap-2">
                             <button class="px-3 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors text-sm" onclick="openModal('categoriesModal')">
@@ -1195,10 +1195,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
                                 <i class="fas fa-star"></i>
                                 Highlights
                             </button>
-                            <button class="px-3 py-2 bg-accent text-white rounded-lg hover:bg-yellow-600 transition-colors text-sm" onclick="openModal('galleryModal')">
+                            <!-- <button class="px-3 py-2 bg-accent text-white rounded-lg hover:bg-yellow-600 transition-colors text-sm" onclick="openModal('galleryModal')">
                                 <i class="fas fa-upload"></i>
                                 Upload Images
-                            </button>
+                            </button> -->
                         </div>
                     </div>
 
