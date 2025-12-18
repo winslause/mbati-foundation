@@ -396,7 +396,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <input type="email" 
                                id="resetEmail" 
                                class="form-input" 
-                               placeholder="admin@haroldmbatifoundation.org"
+                               placeholder="admin@hmbatifoundation.org"
                                required>
                         <div class="error-message" id="emailError">Please enter a valid email address</div>
                     </div>
@@ -450,7 +450,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <h4 class="font-semibold text-gray-800 mb-2">
                             <i class="fas fa-headset mr-2 text-accent"></i>Support
                         </h4>
-                        <p class="text-gray-600 text-sm">Email: <a href="mailto:support@haroldmbatifoundation.org" class="text-accent hover:underline">support@haroldmbatifoundation.org</a></p>
+                        <p class="text-gray-600 text-sm">Email: <a href="mailto:support@hmbatifoundation.org" class="text-accent hover:underline">support@hmbatifoundation.org</a></p>
                         <p class="text-gray-600 text-sm">Phone: <a href="tel:+254700000000" class="text-accent hover:underline">+254 700 000 000</a></p>
                     </div>
                 </div>

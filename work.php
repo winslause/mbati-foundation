@@ -1,3 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Work | Harold Mbati Foundation</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Explore Harold Mbati Foundation's programs: Education Excellence, Harold Mbati Champions Cup, Health & Wellness, and Community Outreach in Kenya.">
+    <meta name="keywords" content="Harold Mbati Foundation Programs, Education Kenya, Sports Development, Health Programs, Community Outreach, Champions Cup, NGO Kenya">
+    <meta name="author" content="Harold Mbati Foundation">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <link rel="canonical" href="https://haroldmbatifoundation.org/index.php?page=work">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Our Work - Harold Mbati Foundation Programs">
+    <meta property="og:description" content="Discover our transformative programs in education, sports, health, and community development across Kenya.">
+    <meta property="og:url" content="https://haroldmbatifoundation.org/index.php?page=work">
+    <meta property="og:image" content="https://haroldmbatifoundation.org/logo.png">
+    <meta property="og:site_name" content="Harold Mbati Foundation">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Our Work - Harold Mbati Foundation">
+    <meta name="twitter:description" content="Transforming communities through education, sports, and sustainable development programs.">
+    <meta name="twitter:image" content="https://haroldmbatifoundation.org/logo.png">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="logo.png">
+    <link rel="apple-touch-icon" href="logo.png">
+
+    <!-- Structured Data for Programs -->
+    <script type="application/ld+json">
+    [
+        {
+            "@context": "https://schema.org",
+            "@type": "Service",
+            "name": "Education Excellence Program",
+            "description": "Education is the foundation of development. We ensure every child has access to quality education through infrastructure improvements, teacher training, and learning materials.",
+            "provider": {
+                "@type": "Organization",
+                "name": "Harold Mbati Foundation"
+            },
+            "areaServed": "Luanda Constituency, Kenya",
+            "serviceType": "Education"
+        },
+        {
+            "@context": "https://schema.org",
+            "@type": "SportsEvent",
+            "name": "Harold Mbati Champions Cup",
+            "description": "Annual football tournament that brings together talent from across the region, building character and creating opportunities.",
+            "organizer": {
+                "@type": "Organization",
+                "name": "Harold Mbati Foundation"
+            },
+            "location": {
+                "@type": "Place",
+                "address": "Luanda Constituency, Kenya"
+            },
+            "sport": "Football"
+        },
+        {
+            "@context": "https://schema.org",
+            "@type": "Service",
+            "name": "Health & Wellness Program",
+            "description": "Focus on maternal and child health, nutrition education, and preventive healthcare initiatives.",
+            "provider": {
+                "@type": "Organization",
+                "name": "Harold Mbati Foundation"
+            },
+            "areaServed": "Luanda Constituency, Kenya",
+            "serviceType": "Healthcare"
+        },
+        {
+            "@context": "https://schema.org",
+            "@type": "Service",
+            "name": "Community Outreach Program",
+            "description": "Working hand-in-hand with communities to address challenges and build sustainable solutions.",
+            "provider": {
+                "@type": "Organization",
+                "name": "Harold Mbati Foundation"
+            },
+            "areaServed": "Luanda Constituency, Kenya",
+            "serviceType": "Community Development"
+        }
+    ]
+    </script>
+</head>
+<body>
+
 <section class="py-20 bg-light">
     <div class="container mx-auto px-4">
         <div class="text-center mb-16">

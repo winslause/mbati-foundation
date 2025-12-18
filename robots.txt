@@ -1,0 +1,17 @@
+User-agent: *
+Allow: /
+
+# Block admin and sensitive areas
+Disallow: /admin.php
+Disallow: /login.php
+Disallow: /config.php
+Disallow: /connect.php
+Disallow: /contact_handler.php
+Disallow: /gallery_handler.php
+Disallow: /init_db.php
+Disallow: /populate_*.php
+Disallow: /test_*.php
+Disallow: /uploads/
+
+# Sitemap
+Sitemap: https://haroldmbatifoundation.org/sitemap.xml

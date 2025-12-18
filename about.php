@@ -1,3 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | Harold Mbati Foundation</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Learn about Harold Mbati Foundation's mission to empower communities in Kenya through education, sports, and sustainable development. Discover our story and impact.">
+    <meta name="keywords" content="Harold Mbati Foundation, About Us, Kenya NGO, Community Development, Youth Empowerment, Education, Sports, Charity">
+    <meta name="author" content="Harold Mbati Foundation">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="googlebot" content="index, follow">
+    <meta name="bingbot" content="index, follow">
+    <link rel="canonical" href="https://hmbatifoundation.org/index.php?page=about">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="About Harold Mbati Foundation - Our Mission & Impact">
+    <meta property="og:description" content="Discover how Harold Mbati Foundation is transforming communities in Kenya through sustainable development programs.">
+    <meta property="og:url" content="https://hmbatifoundation.org/index.php?page=about">
+    <meta property="og:image" content="https://hmbatifoundation.org/logo.png">
+    <meta property="og:site_name" content="Harold Mbati Foundation">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="About Harold Mbati Foundation">
+    <meta name="twitter:description" content="Learn about our mission to empower communities through education and sustainable development.">
+    <meta name="twitter:image" content="https://hmbatifoundation.org/logo.png">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="logo.png">
+    <link rel="apple-touch-icon" href="logo.png">
+</head>
+<body>
+
 <!-- Hero Section -->
 <section class="hero-bg min-h-[80vh] flex items-center relative overflow-hidden">
     <!-- Animated background elements -->

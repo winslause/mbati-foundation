@@ -17,6 +17,10 @@
     <!-- Lightbox CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery-js/1.4.0/css/lightgallery.min.css">
 
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="logo.png">
+    <link rel="apple-touch-icon" href="logo.png">
+
     <style>
         :root {
             --primary: #0f172a;
@@ -638,13 +642,25 @@ function renderVideos(videos) {
         const videoCard = document.createElement('div');
         videoCard.className = 'glass-card rounded-2xl overflow-hidden shine-effect';
 
+        // Convert YouTube URL to embed format
+        let embedUrl = video.video_url;
+        if (video.video_url.includes('youtube.com/watch?v=')) {
+            const videoId = video.video_url.split('v=')[1].split('&')[0];
+            embedUrl = `https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1&playsinline=1`;
+        } else if (video.video_url.includes('youtu.be/')) {
+            const videoId = video.video_url.split('youtu.be/')[1].split('?')[0];
+            embedUrl = `https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1&playsinline=1`;
+        }
+
         videoCard.innerHTML = `
             <div class="video-container">
-                <iframe src="${video.video_url}"
+                <iframe src="${embedUrl}"
                         title="${video.title}"
                         frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen>
+                        allowfullscreen
+                        webkitallowfullscreen
+                        mozallowfullscreen>
                 </iframe>
             </div>
             <div class="p-6">

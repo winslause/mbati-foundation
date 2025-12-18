@@ -5,9 +5,85 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Harold Mbati Foundation</title>
     <!-- SEO Meta Tags -->
-    <meta name="description" content="Harold Mbati Foundation - Empowering communities through education, sports, and sustainable development in Kenya">
-    <meta name="keywords" content="Harold Mbati, Foundation, Kenya, Education, Sports, Community Development, Luanda Constituency">
+    <meta name="description" content="Harold Mbati Foundation - Empowering communities through education, sports, and sustainable development in Kenya. Join us in making a difference in Luanda Constituency.">
+    <meta name="keywords" content="Harold Mbati, Foundation, Kenya, Education, Sports, Community Development, Luanda Constituency, Charity, NGO, Youth Empowerment, Healthcare, Donate">
     <meta name="author" content="Harold Mbati Foundation">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="googlebot" content="index, follow">
+    <meta name="bingbot" content="index, follow">
+    <meta name="language" content="English">
+    <meta name="geo.region" content="KE-30">
+    <meta name="geo.placename" content="Luanda Constituency, Kenya">
+    <meta name="geo.position" content="-0.0236;37.9062">
+    <meta name="ICBM" content="-0.0236, 37.9062">
+    <link rel="canonical" href="https://hmbatifoundation.org/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Harold Mbati Foundation - Empowering Communities in Kenya">
+    <meta property="og:description" content="Empowering communities through education, sports, and sustainable development in Luanda Constituency, Kenya. Join our mission to create positive change.">
+    <meta property="og:url" content="https://hmbatifoundation.org/">
+    <meta property="og:image" content="https://hmbatifoundation.org/logo.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="Harold Mbati Foundation">
+    <meta property="og:locale" content="en_KE">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Harold Mbati Foundation - Empowering Communities in Kenya">
+    <meta name="twitter:description" content="Empowering communities through education, sports, and sustainable development in Luanda Constituency, Kenya.">
+    <meta name="twitter:image" content="https://hmbatifoundation.org/logo.png">
+    <meta name="twitter:site" content="@HaroldMbatiFdn">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="logo.png">
+    <link rel="apple-touch-icon" href="logo.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Harold Mbati Foundation",
+        "url": "https://hmbatifoundation.org",
+        "logo": "https://hmbatifoundation.org/logo.png",
+        "description": "Empowering communities through education, sports, and sustainable development in Luanda Constituency, Kenya",
+        "foundingDate": "2024",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Luanda Constituency",
+            "addressCountry": "KE"
+        },
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+254-768-927895",
+            "contactType": "customer service",
+            "availableLanguage": "English"
+        },
+        "sameAs": [
+            "https://www.facebook.com/HaroldMbatiFoundation",
+            "https://www.instagram.com/HaroldMbatiFoundation",
+            "https://www.twitter.com/HaroldMbatiFdn",
+            "https://www.youtube.com/HaroldMbatiFoundation"
+        ]
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Harold Mbati Foundation",
+        "url": "https://hmbatifoundation.org",
+        "description": "Empowering communities through education, sports, and sustainable development in Kenya",
+        "publisher": {
+            "@type": "Organization",
+            "name": "Harold Mbati Foundation"
+        },
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://hmbatifoundation.org/search?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+        }
+    }
+    </script>
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>

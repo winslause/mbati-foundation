@@ -594,6 +594,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
     
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="logo.png">
+    <link rel="apple-touch-icon" href="logo.png">
     
     <style>
         :root {
@@ -2611,6 +2615,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
             const formData = new FormData(this);
             formData.append('action', 'add_activity');
 
+            // Show loading state
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Uploading...';
+
             fetch('admin.php', {
                 method: 'POST',
                 body: formData
@@ -2623,6 +2633,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
                     loadActivities();
                     loadDashboardStats();
                     this.reset();
+                    document.getElementById('imagePreview').classList.add('hidden');
                 } else {
                     showNotification(data.error || 'Error saving activity', 'error');
                 }
@@ -2630,6 +2641,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
             .catch(error => {
                 console.error('Error:', error);
                 showNotification('Error saving activity', 'error');
+            })
+            .finally(() => {
+                // Reset loading state
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalText;
             });
         });
 
@@ -2638,6 +2654,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
             e.preventDefault();
             const formData = new FormData(this);
             formData.append('action', 'add_category');
+
+            // Show loading state
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Saving...';
 
             fetch('admin.php', {
                 method: 'POST',
@@ -2656,6 +2678,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
             .catch(error => {
                 console.error('Error:', error);
                 showNotification('Error adding category', 'error');
+            })
+            .finally(() => {
+                // Reset loading state
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalText;
             });
         });
 
@@ -2664,6 +2691,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
             e.preventDefault();
             const formData = new FormData(this);
             formData.append('action', 'update_activity');
+
+            // Show loading state
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Uploading...';
 
             fetch('admin.php', {
                 method: 'POST',
@@ -2683,6 +2716,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
             .catch(error => {
                 console.error('Error:', error);
                 showNotification('Error updating activity', 'error');
+            })
+            .finally(() => {
+                // Reset loading state
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalText;
             });
         });
 
@@ -2691,6 +2729,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
             e.preventDefault();
             const formData = new FormData(this);
             formData.append('action', 'add_video');
+
+            // Show loading state
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Saving...';
 
             fetch('admin.php', {
                 method: 'POST',
@@ -2709,6 +2753,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
             .catch(error => {
                 console.error('Error:', error);
                 showNotification('Error adding video', 'error');
+            })
+            .finally(() => {
+                // Reset loading state
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalText;
             });
         });
 
@@ -2717,6 +2766,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
             e.preventDefault();
             const formData = new FormData(this);
             formData.append('action', 'add_album');
+
+            // Show loading state
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Uploading...';
 
             fetch('admin.php', {
                 method: 'POST',
@@ -2735,6 +2790,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
             .catch(error => {
                 console.error('Error:', error);
                 showNotification('Error adding album', 'error');
+            })
+            .finally(() => {
+                // Reset loading state
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalText;
             });
         });
 
@@ -2743,6 +2803,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
             e.preventDefault();
             const formData = new FormData(this);
             formData.append('action', 'add_album_image');
+
+            // Show loading state
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Uploading...';
 
             fetch('admin.php', {
                 method: 'POST',
@@ -2765,6 +2831,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
             .catch(error => {
                 console.error('Error:', error);
                 showNotification('Error adding images', 'error');
+            })
+            .finally(() => {
+                // Reset loading state
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalText;
             });
         });
 
@@ -2773,6 +2844,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
             e.preventDefault();
             const formData = new FormData(this);
             formData.append('action', 'add_highlight');
+
+            // Show loading state
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Uploading...';
 
             fetch('admin.php', {
                 method: 'POST',
@@ -2791,6 +2868,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
             .catch(error => {
                 console.error('Error:', error);
                 showNotification('Error adding highlight', 'error');
+            })
+            .finally(() => {
+                // Reset loading state
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalText;
             });
         });
         
@@ -2798,6 +2880,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
             e.preventDefault();
             const formData = new FormData(this);
             formData.append('action', 'add_donation');
+
+            // Show loading state
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Saving...';
 
             fetch('admin.php', {
                 method: 'POST',
@@ -2817,6 +2905,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
             .catch(error => {
                 console.error('Error:', error);
                 showNotification('Error saving donation', 'error');
+            })
+            .finally(() => {
+                // Reset loading state
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalText;
             });
         });
 
@@ -2825,6 +2918,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
             e.preventDefault();
             const formData = new FormData(this);
             formData.append('action', 'add_gallery_image');
+
+            // Show loading state
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Uploading...';
 
             fetch('admin.php', {
                 method: 'POST',
@@ -2846,6 +2945,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
             .catch(error => {
                 console.error('Error:', error);
                 showNotification('Error uploading image', 'error');
+            })
+            .finally(() => {
+                // Reset loading state
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalText;
             });
         });
 
@@ -3187,6 +3291,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
                 const formData = new FormData(this);
                 formData.append('action', 'change_password');
 
+                // Show loading state
+                const submitBtn = this.querySelector('button[type="submit"]');
+                const originalText = submitBtn.innerHTML;
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Changing...';
+
                 fetch('admin.php', {
                     method: 'POST',
                     body: formData
@@ -3205,6 +3315,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
                 .catch(error => {
                     console.error('Error:', error);
                     showNotification('Error changing password', 'error');
+                })
+                .finally(() => {
+                    // Reset loading state
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = originalText;
                 });
             });
         });
