@@ -43,7 +43,7 @@
                     <li><a href="index.php?page=involve" class="text-gray-300 hover:text-accent transition-colors flex items-center group">
                         <i class="fas fa-chevron-right text-xs mr-3 text-accent group-hover:translate-x-1 transition-transform"></i> Get Involved
                     </a></li>
-                    <li><a href="index.php?page=connect" class="text-gray-300 hover:text-accent transition-colors flex items-center group">
+                    <li><a href="index.php?#connect" class="text-gray-300 hover:text-accent transition-colors flex items-center group">
                         <i class="fas fa-chevron-right text-xs mr-3 text-accent group-hover:translate-x-1 transition-transform"></i> Connect
                     </a></li>
                     <li><a href="login.php" class="text-gray-300 hover:text-accent transition-colors flex items-center group">

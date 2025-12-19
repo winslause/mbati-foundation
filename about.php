@@ -338,7 +338,7 @@
 
                         <div class="md:w-1/2 md:pl-12">
                             <div class="rounded-2xl overflow-hidden shadow-lg">
-                                <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                                <img src="found1.jpeg"
                                      alt="2023 Foundation"
                                      class="w-full h-48 object-cover">
                             </div>
@@ -349,7 +349,7 @@
                     <div class="relative flex flex-col md:flex-row items-center">
                         <div class="md:w-1/2 md:pr-12 mb-8 md:mb-0 order-2 md:order-1">
                             <div class="rounded-2xl overflow-hidden shadow-lg">
-                                <img src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                                <img src="found2.jpeg"
                                      alt="2024 Programs"
                                      class="w-full h-48 object-cover">
                             </div>
@@ -398,7 +398,7 @@
 
                         <div class="md:w-1/2 md:pl-12">
                             <div class="rounded-2xl overflow-hidden shadow-lg">
-                                <img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                                <img src="found3.jpeg"
                                      alt="Future Vision"
                                      class="w-full h-48 object-cover">
                             </div>

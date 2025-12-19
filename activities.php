@@ -450,8 +450,8 @@
                                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
                                     <div>
                                         <div class="w-24 h-24 rounded-full overflow-hidden mb-6 border-4 border-white/30">
-                                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
-                                                 alt="Kiprop Cheptoo"
+                                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsUM5GhwyaXQtkyWGbH3qyJpU4sUj0Ry1jsg&s"
+                                                 alt="Kevin Bahati"
                                                  class="w-full h-full object-cover">
                                         </div>
                                         <h3 class="font-heading text-2xl font-bold text-white mb-4">From Trainee to Employer</h3>
@@ -460,7 +460,7 @@
                                         </p>
                                         <div class="flex items-center justify-between">
                                             <div>
-                                                <div class="font-heading font-bold text-white">Kiprop Cheptoo</div>
+                                                <div class="font-heading font-bold text-white">Kevin Bahati</div>
                                                 <div class="text-white/70 text-sm">Youth Entrepreneurship Program Graduate</div>
                                             </div>
                                             <span class="px-3 py-1 bg-accent/20 text-accent text-xs font-medium rounded-full">Youth Empowerment</span>
@@ -507,7 +507,7 @@
                                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
                                     <div>
                                         <div class="w-24 h-24 rounded-full overflow-hidden mb-6 border-4 border-white/30">
-                                            <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+                                            <img src="https://www.shutterstock.com/image-photo/silhouette-mother-daughter-happy-love-260nw-1510762241.jpg"
                                                  alt="Grace Wanjiku"
                                                  class="w-full h-full object-cover">
                                         </div>
@@ -564,8 +564,8 @@
                                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
                                     <div>
                                         <div class="w-24 h-24 rounded-full overflow-hidden mb-6 border-4 border-white/30">
-                                            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
-                                                 alt="Samuel Kiprotich"
+                                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHSktJwxQfPo4BHwPyBlRiDipRmF8nulqSCg&s"
+                                                 alt="Samuel Wako"
                                                  class="w-full h-full object-cover">
                                         </div>
                                         <h3 class="font-heading text-2xl font-bold text-white mb-4">From Football Pitch to Academy</h3>
@@ -574,7 +574,7 @@
                                         </p>
                                         <div class="flex items-center justify-between">
                                             <div>
-                                                <div class="font-heading font-bold text-white">Samuel Kiprotich</div>
+                                                <div class="font-heading font-bold text-white">Samuel Wako</div>
                                                 <div class="text-white/70 text-sm">Champions Cup Talent Scouted</div>
                                             </div>
                                             <span class="px-3 py-1 bg-amber-500/30 text-amber-300 text-xs font-medium rounded-full">Sports Development</span>

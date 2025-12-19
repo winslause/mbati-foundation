@@ -58,10 +58,10 @@
             "availableLanguage": "English"
         },
         "sameAs": [
-            "https://www.facebook.com/HaroldMbatiFoundation",
-            "https://www.instagram.com/HaroldMbatiFoundation",
-            "https://www.twitter.com/HaroldMbatiFdn",
-            "https://www.youtube.com/HaroldMbatiFoundation"
+            "https://www.facebook.com/profile.php?id=100090150282008&mibextid=ZbWKwL",
+            "https://www.instagram.com/",
+            "https://www.twitter.com/",
+            "https://www.youtube.com/"
         ]
     }
     </script>
