@@ -104,7 +104,7 @@
                         <div class="w-10 h-10 rounded-lg bg-primary/50 flex items-center justify-center mr-3 group-hover:bg-accent/20 transition-colors">
                             <i class="fas fa-phone text-accent"></i>
                         </div>
-                        <span class="text-gray-300">+254 7XX XXX XXX</span>
+                        <span class="text-gray-300">+254 768 927 895</span>
                     </li>
                     <li class="flex items-center group">
                         <div class="w-10 h-10 rounded-lg bg-primary/50 flex items-center justify-center mr-3 group-hover:bg-accent/20 transition-colors">

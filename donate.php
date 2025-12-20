@@ -171,7 +171,7 @@
                                         </div>
                                         <div>
                                             <label class="block text-gray-700 mb-2">Phone Number *</label>
-                                            <input type="tel" class="form-input" placeholder="07XX XXX XXX" required>
+                                            <input type="tel" class="form-input" placeholder="0768 927 895" required>
                                         </div>
                                     </div>
 
@@ -447,7 +447,7 @@
                                     <p class="text-sm text-yellow-700">✓ Save your transaction receipt</p>
                                 </div>
                                 <div class="p-3 bg-purple-50 rounded-lg">
-                                    <p class="text-sm text-purple-700">✓ Contact 0757 000 000 for support</p>
+                                    <p class="text-sm text-purple-700">✓ Contact 0768 927 895 for support</p>
                                 </div>
                             </div>
                         </div>
