@@ -30,7 +30,7 @@
     <meta name="twitter:title" content="Harold Mbati Foundation - Empowering Communities in Kenya">
     <meta name="twitter:description" content="Empowering communities through education, sports, and sustainable development in Luanda Constituency, Kenya.">
     <meta name="twitter:image" content="https://hmbatifoundation.org/logo.png">
-    <meta name="twitter:site" content="@HaroldMbatiFdn">
+    <meta name="x:site" content="@HaroldMbatiFdn">
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" sizes="32x32" href="logo.png">
@@ -58,10 +58,10 @@
             "availableLanguage": "English"
         },
         "sameAs": [
-            "https://www.facebook.com/profile.php?id=100090150282008&mibextid=ZbWKwL",
-            "https://www.instagram.com/",
-            "https://www.twitter.com/",
-            "https://www.youtube.com/"
+            "https://www.facebook.com/share/1GVm5H4bB1/",
+            "https://www.instagram.com/haroldmbatifoundation?igsh=YnBibTF6YTh4a28y",
+            "https://x.com/HaroldMbatiFdn",
+            "https://www.tiktok.com/@haroldmbatifoundation?_r=1&_t=ZM-92PZX1b9911"
         ]
     }
     </script>
@@ -1072,21 +1072,21 @@ if (in_array($page, $allowed_pages)) {
                 <div class="bg-white rounded-2xl p-8 shadow-xl">
                     <h3 class="font-heading text-xl font-bold text-primary mb-6">Follow Our Journey</h3>
                     <div class="grid grid-cols-2 gap-4">
-                        <a href="#" class="flex items-center p-4 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors">
+                        <a href="https://www.facebook.com/share/1GVm5H4bB1/" class="flex items-center p-4 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors">
                             <i class="fab fa-facebook-f text-blue-600 text-2xl mr-3"></i>
                             <span class="font-semibold text-blue-700">Facebook</span>
                         </a>
-                        <a href="#" class="flex items-center p-4 bg-pink-50 rounded-lg hover:bg-pink-100 transition-colors">
+                        <a href="https://www.instagram.com/haroldmbatifoundation?igsh=YnBibTF6YTh4a28y" class="flex items-center p-4 bg-pink-50 rounded-lg hover:bg-pink-100 transition-colors">
                             <i class="fab fa-instagram text-pink-600 text-2xl mr-3"></i>
                             <span class="font-semibold text-pink-700">Instagram</span>
                         </a>
-                        <a href="#" class="flex items-center p-4 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors">
-                            <i class="fab fa-twitter text-blue-400 text-2xl mr-3"></i>
-                            <span class="font-semibold text-blue-500">Twitter</span>
+                        <a href="https://x.com/HaroldMbatiFdn" class="flex items-center p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                            <i class="fab fa-x-twitter text-gray-800 text-2xl mr-3"></i>
+                            <span class="font-semibold text-gray-900">X</span>
                         </a>
-                        <a href="#" class="flex items-center p-4 bg-red-50 rounded-lg hover:bg-red-100 transition-colors">
-                            <i class="fab fa-youtube text-red-600 text-2xl mr-3"></i>
-                            <span class="font-semibold text-red-700">YouTube</span>
+                        <a href="https://www.tiktok.com/@haroldmbatifoundation?_r=1&_t=ZM-92PZX1b9911" class="flex items-center p-4 bg-black rounded-lg hover:bg-gray-800 transition-colors">
+                            <i class="fab fa-tiktok text-white text-2xl mr-3"></i>
+                            <span class="font-semibold text-white">TikTok</span>
                         </a>
                     </div>
                 </div>
