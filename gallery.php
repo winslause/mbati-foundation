@@ -14,12 +14,8 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-    <!-- Lightbox CSS with plugins -->
+    <!-- Lightbox CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery-js/1.4.0/css/lightgallery.min.css">
-    <!-- Additional CSS for plugins -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lg-thumbnail@1.4.0/dist/lg-thumbnail.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lg-zoom@1.4.0/dist/lg-zoom.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lg-fullscreen@1.4.0/dist/lg-fullscreen.min.css">
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" sizes="32x32" href="logo.png">
@@ -186,6 +182,21 @@
             color: white;
             border-color: transparent;
             box-shadow: 0 4px 20px rgba(245, 158, 11, 0.3);
+        }
+
+        /* Lightbox Customization */
+        .lg-backdrop {
+            background: rgba(0, 0, 0, 0.95) !important;
+            backdrop-filter: blur(10px);
+        }
+
+        .lg-container {
+            z-index: 9999 !important;
+        }
+
+        .lg-actions .lg-next, .lg-actions .lg-prev {
+            background-color: rgba(245, 158, 11, 0.2) !important;
+            border: 1px solid rgba(245, 158, 11, 0.3) !important;
         }
 
         /* Loading Animation */
@@ -690,11 +701,8 @@
     </div>
 </div>
 
-<!-- Lightbox JS with plugins -->
+<!-- Lightbox JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery-js/1.4.0/js/lightgallery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/lg-thumbnail@1.4.0/dist/lg-thumbnail.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/lg-zoom@1.4.0/dist/lg-zoom.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/lg-fullscreen@1.4.0/dist/lg-fullscreen.min.js"></script>
 
 <script>
 // Utility functions for loaders
@@ -747,7 +755,7 @@ let visibleItems = 8;
 let allGalleryImages = [];
 let lightGalleryInstance = null;
 
-// Enhanced lightGallery initialization function
+// Simple lightGallery initialization function
 function initLightGallery() {
     const galleryContainer = document.getElementById('galleryContainer');
     if (!galleryContainer || typeof lightGallery === 'undefined') return;
@@ -765,94 +773,26 @@ function initLightGallery() {
                 lightGalleryInstance = null;
             }
             
-            // Initialize new instance with all plugins
+            // Initialize new instance
             lightGalleryInstance = lightGallery(galleryContainer, {
                 selector: '.gallery-item',
                 download: false,
                 counter: true,
                 showThumbByDefault: false,
-                animateThumb: true,
+                animateThumb: false,
                 actualSize: false,
                 thumbWidth: 80,
                 thumbHeight: '80px',
                 thumbMargin: 5,
                 speed: 300,
-                mode: 'lg-slide',
-                cssEase: 'cubic-bezier(0.4, 0, 0.2, 1)',
-                // Enable all plugins
-                plugins: [
-                    lgThumbnail,
-                    lgZoom,
-                    lgFullscreen
-                ],
-                // Custom controls
-                controls: true,
-                nextHtml: '<i class="fas fa-chevron-right"></i>',
-                prevHtml: '<i class="fas fa-chevron-left"></i>',
-                closeHtml: '<i class="fas fa-times"></i>',
-                downloadHtml: '',
-                counterHtml: '{current} of {total}',
-                // Show controls
-                hideControlOnEnd: false,
-                loop: true,
-                // Mobile settings
-                mobileSettings: {
-                    controls: true,
-                    showCloseIcon: true,
-                    download: false
-                }
+                mode: 'lg-slide'
             });
             
-            console.log('LightGallery initialized with all controls');
+            console.log('LightGallery initialized successfully');
         } catch (error) {
             console.error('Error initializing lightGallery:', error);
         }
-    }, 300);
-}
-
-// Function to initialize album modal lightGallery
-function initAlbumLightGallery() {
-    const grid = document.getElementById('albumImagesGrid');
-    if (!grid || typeof lightGallery === 'undefined') return;
-    
-    setTimeout(() => {
-        try {
-            lightGallery(grid, {
-                selector: '.gallery-item',
-                download: false,
-                counter: true,
-                showThumbByDefault: false,
-                animateThumb: true,
-                actualSize: false,
-                thumbWidth: 80,
-                thumbHeight: '80px',
-                thumbMargin: 5,
-                speed: 300,
-                mode: 'lg-slide',
-                cssEase: 'cubic-bezier(0.4, 0, 0.2, 1)',
-                plugins: [
-                    lgThumbnail,
-                    lgZoom,
-                    lgFullscreen
-                ],
-                controls: true,
-                nextHtml: '<i class="fas fa-chevron-right"></i>',
-                prevHtml: '<i class="fas fa-chevron-left"></i>',
-                closeHtml: '<i class="fas fa-times"></i>',
-                downloadHtml: '',
-                counterHtml: '{current} of {total}',
-                hideControlOnEnd: false,
-                loop: true,
-                mobileSettings: {
-                    controls: true,
-                    showCloseIcon: true,
-                    download: false
-                }
-            });
-        } catch (error) {
-            console.error('Error initializing album lightGallery:', error);
-        }
-    }, 300);
+    }, 100);
 }
 
 // Load categories from database
@@ -943,7 +883,7 @@ function loadGalleryImages(filter = 'all', limit = 8, offset = 0) {
         });
 }
 
-// Render gallery images
+// Render gallery images - SIMPLIFIED VERSION
 function renderGallery() {
     const galleryContainer = document.getElementById('galleryContainer');
     if (!galleryContainer) return;
@@ -998,7 +938,7 @@ function renderGallery() {
     // Initialize lightGallery after a short delay
     setTimeout(() => {
         initLightGallery();
-    }, 300);
+    }, 200);
 
     // Update load more button visibility
     const loadMoreBtn = document.getElementById('loadMore');
@@ -1281,8 +1221,24 @@ function loadAlbumImages(albumId) {
 
                 // Initialize lightGallery for the modal
                 setTimeout(() => {
-                    initAlbumLightGallery();
-                }, 300);
+                    try {
+                        lightGallery(grid, {
+                            selector: '.gallery-item',
+                            download: false,
+                            counter: true,
+                            showThumbByDefault: false,
+                            animateThumb: false,
+                            actualSize: false,
+                            thumbWidth: 80,
+                            thumbHeight: '80px',
+                            thumbMargin: 5,
+                            speed: 300,
+                            mode: 'lg-slide'
+                        });
+                    } catch (error) {
+                        console.error('Error initializing album lightGallery:', error);
+                    }
+                }, 200);
             } else {
                 const grid = document.getElementById('albumImagesGrid');
                 if (grid) {
