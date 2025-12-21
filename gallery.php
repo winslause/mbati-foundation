@@ -14,8 +14,12 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-    <!-- Lightbox CSS -->
+    <!-- Lightbox CSS with plugins -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery-js/1.4.0/css/lightgallery.min.css">
+    <!-- Additional CSS for plugins -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lg-thumbnail@1.4.0/dist/lg-thumbnail.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lg-zoom@1.4.0/dist/lg-zoom.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lg-fullscreen@1.4.0/dist/lg-fullscreen.min.css">
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" sizes="32x32" href="logo.png">
@@ -37,7 +41,7 @@
             overflow-x: hidden;
         }
 
-        /* Custom Scrollbar */
+        /* Custom Scrollbar - Only for main page */
         ::-webkit-scrollbar {
             width: 10px;
         }
@@ -54,6 +58,20 @@
 
         ::-webkit-scrollbar-thumb:hover {
             background: linear-gradient(to bottom, #d97706, #b45309);
+        }
+
+        /* Disable scrollbars on gallery items and containers */
+        .gallery-item *,
+        .video-container *,
+        .album-images-container * {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;     /* Firefox */
+        }
+
+        .gallery-item *::-webkit-scrollbar,
+        .video-container *::-webkit-scrollbar,
+        .album-images-container *::-webkit-scrollbar {
+            display: none; /* Chrome, Safari and Opera */
         }
 
         /* Glassmorphism Effect */
@@ -77,7 +95,7 @@
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
         }
 
-        /* Gallery Item */
+        /* Gallery Item - No Scroll */
         .gallery-item {
             position: relative;
             border-radius: 1rem;
@@ -170,21 +188,6 @@
             box-shadow: 0 4px 20px rgba(245, 158, 11, 0.3);
         }
 
-        /* Lightbox Customization */
-        .lg-backdrop {
-            background: rgba(0, 0, 0, 0.95) !important;
-            backdrop-filter: blur(10px);
-        }
-
-        .lg-container {
-            z-index: 9999 !important;
-        }
-
-        .lg-actions .lg-next, .lg-actions .lg-prev {
-            background-color: rgba(245, 158, 11, 0.2) !important;
-            border: 1px solid rgba(245, 158, 11, 0.3) !important;
-        }
-
         /* Loading Animation */
         .loader {
             display: inline-block;
@@ -253,6 +256,7 @@
             width: 100%;
             height: 100%;
             border: none;
+            overflow: hidden !important;
         }
 
         /* Responsive */
@@ -291,6 +295,203 @@
         @keyframes pulse {
             0%, 100% { opacity: 1; }
             50% { opacity: 0.5; }
+        }
+
+        /* Modal Loader Styles */
+        .modal-loader {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+        }
+
+        .modal-loader .spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(245, 158, 11, 0.2);
+            border-top: 3px solid var(--accent);
+            border-radius: 50%;
+            animation: modal-spin 1s linear infinite;
+        }
+
+        .modal-loader .spinner.small {
+            width: 30px;
+            height: 30px;
+            border-width: 2px;
+        }
+
+        @keyframes modal-spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Modal overlay loader */
+        .modal-overlay-loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-overlay-loader.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .modal-overlay-loader .loader-content {
+            text-align: center;
+            color: white;
+        }
+
+        .modal-overlay-loader .loader-content h3 {
+            margin-top: 20px;
+            font-size: 1.2rem;
+            color: var(--accent);
+        }
+
+        /* Content loader for images grid */
+        .content-loader {
+            display: grid;
+            place-items: center;
+            min-height: 200px;
+            width: 100%;
+            transition: opacity 0.3s ease;
+        }
+
+        .content-loader.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .content-loader .pulse-loader {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--accent), #d97706);
+            border-radius: 50%;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        /* Skeleton loading for gallery items */
+        .skeleton-item {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+            border-radius: 1rem;
+            min-height: 280px;
+            transition: opacity 0.3s ease;
+        }
+
+        .skeleton-item.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        @keyframes loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        /* Image loader */
+        .image-loader {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1;
+            transition: opacity 0.3s ease;
+        }
+
+        .image-loader.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Video loader */
+        .video-loader {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1;
+            border-radius: 1rem;
+            transition: opacity 0.3s ease;
+        }
+
+        .video-loader.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* Album images grid container */
+        .album-images-container {
+            overflow-y: auto;
+            max-height: 70vh;
+            padding-right: 8px; /* Space for content */
+        }
+
+        /* Hide scrollbar for album images container */
+        .album-images-container::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .album-images-container::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.05);
+            border-radius: 4px;
+        }
+
+        .album-images-container::-webkit-scrollbar-thumb {
+            background: rgba(245, 158, 11, 0.3);
+            border-radius: 4px;
+        }
+
+        .album-images-container::-webkit-scrollbar-thumb:hover {
+            background: rgba(245, 158, 11, 0.5);
+        }
+
+        /* Fix for iframe scrollbars */
+        iframe {
+            overflow: hidden !important;
+        }
+
+        /* Ensure images don't have scrollbars */
+        img {
+            overflow: hidden !important;
+        }
+
+        /* Remove scrollbars from all containers inside gallery items */
+        .gallery-item > div,
+        .gallery-item > div > *,
+        .video-container > *,
+        #albumImagesGrid > * {
+            overflow: hidden !important;
         }
     </style>
 </head>
@@ -455,21 +656,204 @@
                 </button>
             </div>
         </div>
-        <div class="p-6 overflow-y-auto max-h-[70vh]">
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4" id="albumImagesGrid">
+        <div class="album-images-container">
+            <!-- Loader for album images -->
+            <div id="albumImagesLoader" class="content-loader">
+                <div class="modal-loader">
+                    <div class="spinner"></div>
+                </div>
+                <p class="mt-4 text-gray-600">Loading images...</p>
+            </div>
+            
+            <!-- Skeleton loader while loading -->
+            <div id="albumImagesSkeleton" class="p-6">
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                    <div class="skeleton-item h-48"></div>
+                    <div class="skeleton-item h-48"></div>
+                    <div class="skeleton-item h-48"></div>
+                    <div class="skeleton-item h-48"></div>
+                </div>
+            </div>
+            
+            <div class="p-6 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4" id="albumImagesGrid">
                 <!-- Album images will be loaded here -->
             </div>
         </div>
     </div>
 </div>
 
-<!-- Lightbox JS -->
+<!-- Global overlay loader for all modals -->
+<div id="globalModalLoader" class="modal-overlay-loader hidden">
+    <div class="loader-content">
+        <div class="spinner"></div>
+        <h3 id="globalLoaderText">Loading content...</h3>
+    </div>
+</div>
+
+<!-- Lightbox JS with plugins -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery-js/1.4.0/js/lightgallery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lg-thumbnail@1.4.0/dist/lg-thumbnail.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lg-zoom@1.4.0/dist/lg-zoom.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lg-fullscreen@1.4.0/dist/lg-fullscreen.min.js"></script>
 
 <script>
+// Utility functions for loaders
+function showGlobalLoader(text = "Loading content...") {
+    const loader = document.getElementById('globalModalLoader');
+    const loaderText = document.getElementById('globalLoaderText');
+    if (loader && loaderText) {
+        loaderText.textContent = text;
+        loader.classList.remove('hidden');
+    }
+}
+
+function hideGlobalLoader() {
+    const loader = document.getElementById('globalModalLoader');
+    if (loader) {
+        loader.classList.add('hidden');
+    }
+}
+
+function showAlbumLoader() {
+    const loader = document.getElementById('albumImagesLoader');
+    const skeleton = document.getElementById('albumImagesSkeleton');
+    const grid = document.getElementById('albumImagesGrid');
+    
+    if (loader) loader.classList.remove('hidden');
+    if (skeleton) skeleton.classList.remove('hidden');
+    if (grid) grid.innerHTML = '';
+}
+
+function hideAlbumLoader() {
+    const loader = document.getElementById('albumImagesLoader');
+    const skeleton = document.getElementById('albumImagesSkeleton');
+    
+    if (loader) loader.classList.add('hidden');
+    if (skeleton) skeleton.classList.add('hidden');
+}
+
+function closeAlbumModal() {
+    const modal = document.getElementById('albumImagesModal');
+    if (modal) {
+        modal.classList.add('hidden');
+        document.body.style.overflow = 'auto';
+        hideAlbumLoader();
+    }
+}
+
+// Main variables
 let currentFilter = 'all';
 let visibleItems = 8;
 let allGalleryImages = [];
+let lightGalleryInstance = null;
+
+// Enhanced lightGallery initialization function
+function initLightGallery() {
+    const galleryContainer = document.getElementById('galleryContainer');
+    if (!galleryContainer || typeof lightGallery === 'undefined') return;
+    
+    // Wait a bit for DOM to settle
+    setTimeout(() => {
+        try {
+            // Destroy previous instance if it exists
+            if (lightGalleryInstance) {
+                try {
+                    lightGalleryInstance.destroy(true);
+                } catch (e) {
+                    console.log('Failed to destroy previous lightGallery instance');
+                }
+                lightGalleryInstance = null;
+            }
+            
+            // Initialize new instance with all plugins
+            lightGalleryInstance = lightGallery(galleryContainer, {
+                selector: '.gallery-item',
+                download: false,
+                counter: true,
+                showThumbByDefault: false,
+                animateThumb: true,
+                actualSize: false,
+                thumbWidth: 80,
+                thumbHeight: '80px',
+                thumbMargin: 5,
+                speed: 300,
+                mode: 'lg-slide',
+                cssEase: 'cubic-bezier(0.4, 0, 0.2, 1)',
+                // Enable all plugins
+                plugins: [
+                    lgThumbnail,
+                    lgZoom,
+                    lgFullscreen
+                ],
+                // Custom controls
+                controls: true,
+                nextHtml: '<i class="fas fa-chevron-right"></i>',
+                prevHtml: '<i class="fas fa-chevron-left"></i>',
+                closeHtml: '<i class="fas fa-times"></i>',
+                downloadHtml: '',
+                counterHtml: '{current} of {total}',
+                // Show controls
+                hideControlOnEnd: false,
+                loop: true,
+                // Mobile settings
+                mobileSettings: {
+                    controls: true,
+                    showCloseIcon: true,
+                    download: false
+                }
+            });
+            
+            console.log('LightGallery initialized with all controls');
+        } catch (error) {
+            console.error('Error initializing lightGallery:', error);
+        }
+    }, 300);
+}
+
+// Function to initialize album modal lightGallery
+function initAlbumLightGallery() {
+    const grid = document.getElementById('albumImagesGrid');
+    if (!grid || typeof lightGallery === 'undefined') return;
+    
+    setTimeout(() => {
+        try {
+            lightGallery(grid, {
+                selector: '.gallery-item',
+                download: false,
+                counter: true,
+                showThumbByDefault: false,
+                animateThumb: true,
+                actualSize: false,
+                thumbWidth: 80,
+                thumbHeight: '80px',
+                thumbMargin: 5,
+                speed: 300,
+                mode: 'lg-slide',
+                cssEase: 'cubic-bezier(0.4, 0, 0.2, 1)',
+                plugins: [
+                    lgThumbnail,
+                    lgZoom,
+                    lgFullscreen
+                ],
+                controls: true,
+                nextHtml: '<i class="fas fa-chevron-right"></i>',
+                prevHtml: '<i class="fas fa-chevron-left"></i>',
+                closeHtml: '<i class="fas fa-times"></i>',
+                downloadHtml: '',
+                counterHtml: '{current} of {total}',
+                hideControlOnEnd: false,
+                loop: true,
+                mobileSettings: {
+                    controls: true,
+                    showCloseIcon: true,
+                    download: false
+                }
+            });
+        } catch (error) {
+            console.error('Error initializing album lightGallery:', error);
+        }
+    }, 300);
+}
 
 // Load categories from database
 function loadCategories() {
@@ -477,31 +861,31 @@ function loadCategories() {
         .then(response => response.json())
         .then(data => {
             if (data.success) {
-                // Update category buttons based on database categories
                 const categoryButtons = document.getElementById('categoryButtons');
-                const existingButtons = categoryButtons.querySelectorAll('.category-btn');
-                existingButtons.forEach(btn => {
-                    if (btn.getAttribute('data-filter') !== 'all') {
-                        btn.remove();
-                    }
-                });
+                if (categoryButtons) {
+                    const existingButtons = categoryButtons.querySelectorAll('.category-btn');
+                    existingButtons.forEach(btn => {
+                        if (btn.getAttribute('data-filter') !== 'all') {
+                            btn.remove();
+                        }
+                    });
 
-                data.categories.forEach(category => {
-                    const button = document.createElement('button');
-                    button.className = 'category-btn';
-                    button.setAttribute('data-filter', category.name);
+                    data.categories.forEach(category => {
+                        const button = document.createElement('button');
+                        button.className = 'category-btn';
+                        button.setAttribute('data-filter', category.name);
 
-                    // Add appropriate icon based on category
-                    let icon = 'fas fa-tag';
-                    if (category.name.toLowerCase().includes('youth')) icon = 'fas fa-users';
-                    else if (category.name.toLowerCase().includes('education')) icon = 'fas fa-graduation-cap';
-                    else if (category.name.toLowerCase().includes('sports')) icon = 'fas fa-futbol';
-                    else if (category.name.toLowerCase().includes('community')) icon = 'fas fa-hands-helping';
-                    else if (category.name.toLowerCase().includes('events')) icon = 'fas fa-calendar-alt';
+                        let icon = 'fas fa-tag';
+                        if (category.name.toLowerCase().includes('youth')) icon = 'fas fa-users';
+                        else if (category.name.toLowerCase().includes('education')) icon = 'fas fa-graduation-cap';
+                        else if (category.name.toLowerCase().includes('sports')) icon = 'fas fa-futbol';
+                        else if (category.name.toLowerCase().includes('community')) icon = 'fas fa-hands-helping';
+                        else if (category.name.toLowerCase().includes('events')) icon = 'fas fa-calendar-alt';
 
-                    button.innerHTML = `<i class="${icon} mr-2"></i>${category.name}`;
-                    categoryButtons.appendChild(button);
-                });
+                        button.innerHTML = `<i class="${icon} mr-2"></i>${category.name}`;
+                        categoryButtons.appendChild(button);
+                    });
+                }
             }
         })
         .catch(error => console.error('Error loading categories:', error));
@@ -509,6 +893,28 @@ function loadCategories() {
 
 // Load gallery images from database
 function loadGalleryImages(filter = 'all', limit = 8, offset = 0) {
+    const galleryContainer = document.getElementById('galleryContainer');
+    const loadMoreBtn = document.getElementById('loadMore');
+    
+    // Show skeleton loader on first load
+    if (offset === 0 && galleryContainer) {
+        galleryContainer.innerHTML = `
+            <div class="col-span-full">
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                    ${Array.from({length: 8}).map(() => `
+                        <div class="relative h-64 overflow-hidden">
+                            <div class="skeleton-item h-full"></div>
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+        `;
+        
+        if (loadMoreBtn) {
+            loadMoreBtn.style.display = 'none';
+        }
+    }
+    
     const categoryParam = filter === 'all' ? 'all' : filter;
     const url = `gallery_handler.php?action=get_gallery&category=${encodeURIComponent(categoryParam)}&limit=${limit}&offset=${offset}`;
 
@@ -524,14 +930,23 @@ function loadGalleryImages(filter = 'all', limit = 8, offset = 0) {
                 renderGallery();
             } else {
                 console.error('Gallery API returned error:', data);
+                if (galleryContainer) {
+                    galleryContainer.innerHTML = '<p class="text-gray-500 text-center py-8 col-span-full">Failed to load images. Please try again.</p>';
+                }
             }
         })
-        .catch(error => console.error('Error loading gallery images:', error));
+        .catch(error => {
+            console.error('Error loading gallery images:', error);
+            if (galleryContainer) {
+                galleryContainer.innerHTML = '<p class="text-gray-500 text-center py-8 col-span-full">Network error. Please check your connection.</p>';
+            }
+        });
 }
 
 // Render gallery images
 function renderGallery() {
     const galleryContainer = document.getElementById('galleryContainer');
+    if (!galleryContainer) return;
 
     const filteredItems = currentFilter === 'all' ?
         allGalleryImages :
@@ -539,25 +954,40 @@ function renderGallery() {
 
     galleryContainer.innerHTML = '';
 
-    // Show only visible items
     const itemsToShow = filteredItems.slice(0, visibleItems);
 
+    if (itemsToShow.length === 0) {
+        galleryContainer.innerHTML = '<p class="text-gray-500 text-center py-8 col-span-full">No images found for this category.</p>';
+        return;
+    }
+
     itemsToShow.forEach((item, index) => {
-        const galleryItem = document.createElement('div');
+        const galleryItem = document.createElement('a');
         galleryItem.className = `gallery-item animate-fade-in-up`;
         galleryItem.style.animationDelay = `${index * 0.1}s`;
-        galleryItem.setAttribute('data-src', `${item.image_path}`);
+        galleryItem.setAttribute('href', item.image_path);
+        galleryItem.setAttribute('data-src', item.image_path);
 
         galleryItem.innerHTML = `
-            <img src="${item.image_path}" alt="${item.title || 'Gallery image'}" loading="lazy">
-            <div class="gallery-overlay">
-                <h3 class="font-bold text-dark mb-1">${item.title || 'Untitled'}</h3>
-                <p class="text-gray-700 text-sm">${item.description || ''}</p>
-                <div class="mt-3 flex items-center justify-between">
-                    <span class="px-2 py-1 bg-accent/20 text-accent text-xs rounded-full">${item.category || 'Uncategorized'}</span>
-                    <button class="w-8 h-8 rounded-full bg-black/20 flex items-center justify-center hover:bg-accent transition-colors">
-                        <i class="fas fa-expand text-dark text-sm"></i>
-                    </button>
+            <div class="relative h-64 overflow-hidden">
+                <div class="image-loader">
+                    <div class="spinner small"></div>
+                </div>
+                <img src="${item.image_path}" 
+                     alt="${item.title || 'Gallery image'}" 
+                     loading="lazy"
+                     class="w-full h-full object-cover"
+                     onload="this.classList.add('fade-in'); this.previousElementSibling.classList.add('hidden');"
+                     onerror="this.previousElementSibling.classList.add('hidden');">
+                <div class="gallery-overlay">
+                    <h3 class="font-bold text-dark mb-1">${item.title || ' '}</h3>
+                    <p class="text-gray-700 text-sm">${item.description || ''}</p>
+                    <div class="mt-3 flex items-center justify-between">
+                        <span class="px-2 py-1 bg-accent/20 text-accent text-xs rounded-full">${item.category || 'Uncategorized'}</span>
+                        <span class="w-8 h-8 rounded-full bg-black/20 flex items-center justify-center">
+                            <i class="fas fa-expand text-dark text-sm"></i>
+                        </span>
+                    </div>
                 </div>
             </div>
         `;
@@ -565,65 +995,77 @@ function renderGallery() {
         galleryContainer.appendChild(galleryItem);
     });
 
-    // Initialize lightGallery
-    lightGallery(document.getElementById('galleryContainer'), {
-        selector: '.gallery-item',
-        download: false,
-        counter: true,
-        showThumbByDefault: false,
-        animateThumb: true,
-        actualSize: false,
-        thumbWidth: 80,
-        thumbHeight: '80px',
-        thumbMargin: 5
-    });
+    // Initialize lightGallery after a short delay
+    setTimeout(() => {
+        initLightGallery();
+    }, 300);
 
     // Update load more button visibility
     const loadMoreBtn = document.getElementById('loadMore');
-    if (filteredItems.length <= visibleItems) {
-        loadMoreBtn.style.display = 'none';
-    } else {
-        loadMoreBtn.style.display = 'inline-flex';
+    if (loadMoreBtn) {
+        if (filteredItems.length <= visibleItems) {
+            loadMoreBtn.style.display = 'none';
+        } else {
+            loadMoreBtn.style.display = 'inline-flex';
+        }
     }
 }
 
 // Category Filtering
 document.addEventListener('click', function(e) {
-    if (e.target.classList.contains('category-btn') || e.target.closest('.category-btn')) {
-        const button = e.target.classList.contains('category-btn') ? e.target : e.target.closest('.category-btn');
-
-        // Remove active class from all buttons
+    const categoryBtn = e.target.closest('.category-btn');
+    if (categoryBtn) {
         document.querySelectorAll('.category-btn').forEach(btn => {
             btn.classList.remove('active');
         });
 
-        // Add active class to clicked button
-        button.classList.add('active');
-
-        // Update filter
-        currentFilter = button.getAttribute('data-filter');
+        categoryBtn.classList.add('active');
+        currentFilter = categoryBtn.getAttribute('data-filter');
         visibleItems = 8;
-
-        // Load filtered images
         loadGalleryImages(currentFilter, visibleItems, 0);
     }
 });
 
 // Load More Functionality
-document.getElementById('loadMore').addEventListener('click', function() {
-    visibleItems += 8;
-    loadGalleryImages(currentFilter, visibleItems, 0);
+document.addEventListener('DOMContentLoaded', function() {
+    const loadMoreBtn = document.getElementById('loadMore');
+    if (loadMoreBtn) {
+        loadMoreBtn.addEventListener('click', function() {
+            visibleItems += 8;
+            loadGalleryImages(currentFilter, visibleItems, 0);
+        });
+    }
 });
 
 // Load videos from database
 function loadVideos() {
+    const videosContainer = document.getElementById('videosContainer');
+    if (!videosContainer) return;
+    
+    // Show skeleton loader
+    videosContainer.innerHTML = `
+        <div class="col-span-full">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                ${Array.from({length: 3}).map(() => `
+                    <div class="glass-card rounded-2xl overflow-hidden">
+                        <div class="skeleton-item h-48"></div>
+                        <div class="p-6">
+                            <div class="skeleton-item h-4 w-3/4 mb-2"></div>
+                            <div class="skeleton-item h-3 w-full"></div>
+                            <div class="skeleton-item h-3 w-2/3 mt-2"></div>
+                        </div>
+                    </div>
+                `).join('')}
+            </div>
+        </div>
+    `;
+    
     fetch('gallery_handler.php?action=get_videos')
         .then(response => response.json())
         .then(data => {
             if (data.success && data.videos.length > 0) {
                 renderVideos(data.videos);
             } else {
-                // Fallback to default videos if no videos in database
                 renderDefaultVideos();
             }
         })
@@ -633,16 +1075,17 @@ function loadVideos() {
         });
 }
 
-// Render videos
+// Render videos with loaders
 function renderVideos(videos) {
     const videosContainer = document.getElementById('videosContainer');
+    if (!videosContainer) return;
+    
     videosContainer.innerHTML = '';
 
     videos.forEach(video => {
         const videoCard = document.createElement('div');
         videoCard.className = 'glass-card rounded-2xl overflow-hidden shine-effect';
 
-        // Convert YouTube URL to embed format
         let embedUrl = video.video_url;
         if (video.video_url.includes('youtube.com/watch?v=')) {
             const videoId = video.video_url.split('v=')[1].split('&')[0];
@@ -654,13 +1097,17 @@ function renderVideos(videos) {
 
         videoCard.innerHTML = `
             <div class="video-container">
+                <div class="video-loader">
+                    <div class="spinner small"></div>
+                </div>
                 <iframe src="${embedUrl}"
                         title="${video.title}"
                         frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowfullscreen
                         webkitallowfullscreen
-                        mozallowfullscreen>
+                        mozallowfullscreen
+                        onload="this.classList.add('fade-in'); this.previousElementSibling.classList.add('hidden');">
                 </iframe>
             </div>
             <div class="p-6">
@@ -673,17 +1120,23 @@ function renderVideos(videos) {
     });
 }
 
-// Fallback videos if database is empty
+// Fallback videos
 function renderDefaultVideos() {
     const videosContainer = document.getElementById('videosContainer');
+    if (!videosContainer) return;
+    
     videosContainer.innerHTML = `
         <div class="glass-card rounded-2xl overflow-hidden shine-effect">
             <div class="video-container">
+                <div class="video-loader">
+                    <div class="spinner small"></div>
+                </div>
                 <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ"
                         title="HMF Impact Story"
                         frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen>
+                        allowfullscreen
+                        onload="this.classList.add('fade-in'); this.previousElementSibling.classList.add('hidden');">
                 </iframe>
             </div>
             <div class="p-6">
@@ -696,13 +1149,28 @@ function renderDefaultVideos() {
 
 // Load albums from database
 function loadAlbums() {
+    const albumsContainer = document.getElementById('albumsContainer');
+    if (!albumsContainer) return;
+    
+    // Show skeleton loader
+    albumsContainer.innerHTML = `
+        <div class="col-span-full">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                ${Array.from({length: 3}).map(() => `
+                    <div class="glass-card rounded-2xl overflow-hidden">
+                        <div class="skeleton-item h-64"></div>
+                    </div>
+                `).join('')}
+            </div>
+        </div>
+    `;
+    
     fetch('gallery_handler.php?action=get_albums')
         .then(response => response.json())
         .then(data => {
             if (data.success && data.albums.length > 0) {
                 renderAlbums(data.albums);
             } else {
-                // Fallback to default albums if no albums in database
                 renderDefaultAlbums();
             }
         })
@@ -712,9 +1180,11 @@ function loadAlbums() {
         });
 }
 
-// Render albums
+// Render albums with loaders
 function renderAlbums(albums) {
     const albumsContainer = document.getElementById('albumsContainer');
+    if (!albumsContainer) return;
+    
     albumsContainer.innerHTML = '';
 
     albums.forEach(album => {
@@ -724,9 +1194,14 @@ function renderAlbums(albums) {
 
         albumCard.innerHTML = `
             <div class="relative h-64 overflow-hidden">
+                <div class="image-loader">
+                    <div class="spinner small"></div>
+                </div>
                 <img src="${album.cover_image || 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'}"
                       alt="${album.title}"
-                      class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                      class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                      onload="this.classList.add('fade-in'); this.previousElementSibling.classList.add('hidden');"
+                      onerror="this.previousElementSibling.classList.add('hidden');">
                 <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
                 <div class="absolute bottom-4 left-4 text-white">
                     <div class="text-sm text-accent font-semibold mb-1">${album.image_count || 0} Photos</div>
@@ -741,19 +1216,19 @@ function renderAlbums(albums) {
 
 // Open album modal
 function openAlbumModal(albumId, albumTitle) {
-    document.getElementById('albumModalTitle').textContent = albumTitle;
-    document.getElementById('albumImagesModal').classList.remove('hidden');
-    document.body.style.overflow = 'hidden';
-    loadAlbumImages(albumId);
+    const modal = document.getElementById('albumImagesModal');
+    const modalTitle = document.getElementById('albumModalTitle');
+    
+    if (modal && modalTitle) {
+        modalTitle.textContent = albumTitle;
+        modal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+        showAlbumLoader();
+        loadAlbumImages(albumId);
+    }
 }
 
-// Close album modal
-function closeAlbumModal() {
-    document.getElementById('albumImagesModal').classList.add('hidden');
-    document.body.style.overflow = 'auto';
-}
-
-// Load album images
+// Load album images with individual loaders
 function loadAlbumImages(albumId) {
     fetch(`gallery_handler.php?action=get_album_images&album_id=${albumId}`)
         .then(response => response.json())
@@ -761,28 +1236,42 @@ function loadAlbumImages(albumId) {
             if (data.success) {
                 const images = data.images || [];
                 const grid = document.getElementById('albumImagesGrid');
-                grid.innerHTML = '';
-
+                
+                // Hide loader and skeleton
+                hideAlbumLoader();
+                
+                if (!grid) return;
+                
                 if (images.length === 0) {
                     grid.innerHTML = '<p class="text-gray-500 text-sm col-span-full text-center py-8">No images in this album yet.</p>';
                     return;
                 }
 
                 images.forEach(image => {
-                    const imageDiv = document.createElement('div');
-                    imageDiv.className = 'gallery-item';
-                    imageDiv.setAttribute('data-src', `${image.image_path}`);
+                    const imageDiv = document.createElement('a');
+                    imageDiv.className = 'gallery-item overflow-hidden';
+                    imageDiv.setAttribute('href', image.image_path);
+                    imageDiv.setAttribute('data-src', image.image_path);
 
                     imageDiv.innerHTML = `
-                        <img src="${image.image_path}" alt="${image.title || 'Album image'}" class="w-full h-48 object-cover rounded-lg">
-                        <div class="gallery-overlay">
-                            <h3 class="font-bold text-dark mb-1">${image.title || 'Untitled'}</h3>
-                            <p class="text-gray-700 text-sm">${image.description || ''}</p>
-                            <div class="mt-3 flex items-center justify-between">
-                                <span class="px-2 py-1 bg-accent/20 text-accent text-xs rounded-full">Album Image</span>
-                                <button class="w-8 h-8 rounded-full bg-black/20 flex items-center justify-center hover:bg-accent transition-colors">
-                                    <i class="fas fa-expand text-dark text-sm"></i>
-                                </button>
+                        <div class="relative h-48 overflow-hidden">
+                            <div class="image-loader">
+                                <div class="spinner small"></div>
+                            </div>
+                            <img src="${image.image_path}" 
+                                 alt="${image.title || 'Album image'}" 
+                                 class="w-full h-full object-cover rounded-lg"
+                                 onload="this.classList.add('fade-in'); this.previousElementSibling.classList.add('hidden');"
+                                 onerror="this.previousElementSibling.classList.add('hidden');">
+                            <div class="gallery-overlay">
+                                <h3 class="font-bold text-dark mb-1">${image.title || ' '}</h3>
+                                <p class="text-gray-700 text-sm">${image.description || ''}</p>
+                                <div class="mt-3 flex items-center justify-between">
+                                    <span class="px-2 py-1 bg-accent/20 text-accent text-xs rounded-full">Album Image</span>
+                                    <span class="w-8 h-8 rounded-full bg-black/20 flex items-center justify-center">
+                                        <i class="fas fa-expand text-dark text-sm"></i>
+                                    </span>
+                                </div>
                             </div>
                         </div>
                     `;
@@ -791,50 +1280,89 @@ function loadAlbumImages(albumId) {
                 });
 
                 // Initialize lightGallery for the modal
-                lightGallery(grid, {
-                    selector: '.gallery-item',
-                    download: false,
-                    counter: true,
-                    showThumbByDefault: false,
-                    animateThumb: true,
-                    actualSize: false,
-                    thumbWidth: 80,
-                    thumbHeight: '80px',
-                    thumbMargin: 5
-                });
+                setTimeout(() => {
+                    initAlbumLightGallery();
+                }, 300);
+            } else {
+                const grid = document.getElementById('albumImagesGrid');
+                if (grid) {
+                    grid.innerHTML = '<p class="text-gray-500 text-sm col-span-full text-center py-8">Failed to load album images.</p>';
+                }
+                hideAlbumLoader();
             }
         })
-        .catch(error => console.error('Error loading album images:', error));
+        .catch(error => {
+            console.error('Error loading album images:', error);
+            const grid = document.getElementById('albumImagesGrid');
+            if (grid) {
+                grid.innerHTML = '<p class="text-gray-500 text-sm col-span-full text-center py-8">Failed to load images. Please try again.</p>';
+            }
+            hideAlbumLoader();
+        });
 }
 
-// Fallback albums if database is empty
+// Fallback albums
 function renderDefaultAlbums() {
     const albumsContainer = document.getElementById('albumsContainer');
-    albumsContainer.innerHTML = `
-        <div class="glass-card rounded-2xl overflow-hidden group cursor-pointer transform hover:-translate-y-2 transition-all duration-300">
-            <div class="relative h-64 overflow-hidden">
-                <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                      alt="Youth Album"
-                      class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
-                <div class="absolute bottom-4 left-4 text-white">
-                    <div class="text-sm text-accent font-semibold mb-1">45 Photos</div>
-                    <h3 class="text-xl font-bold">Youth Empowerment 2024</h3>
-                </div>
+    if (!albumsContainer) return;
+    
+    const albumCard = document.createElement('div');
+    albumCard.className = 'glass-card rounded-2xl overflow-hidden group cursor-pointer transform hover:-translate-y-2 transition-all duration-300';
+    albumCard.onclick = () => openAlbumModal('default', 'Youth Empowerment 2024');
+
+    albumCard.innerHTML = `
+        <div class="relative h-64 overflow-hidden">
+            <div class="image-loader">
+                <div class="spinner small"></div>
+            </div>
+            <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                  alt="Youth Album"
+                  class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  onload="this.classList.add('fade-in'); this.previousElementSibling.classList.add('hidden');"
+                  onerror="this.previousElementSibling.classList.add('hidden');">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+            <div class="absolute bottom-4 left-4 text-white">
+                <div class="text-sm text-accent font-semibold mb-1">45 Photos</div>
+                <h3 class="text-xl font-bold">Youth Empowerment 2024</h3>
             </div>
         </div>
     `;
+
+    albumsContainer.innerHTML = '';
+    albumsContainer.appendChild(albumCard);
 }
 
 // Load photo of the day from database
 function loadPhotoOfDay() {
+    const section = document.getElementById('photoOfDaySection');
+    if (!section) return;
+    
+    // Show skeleton loader
+    section.innerHTML = `
+        <div class="container mx-auto px-4">
+            <div class="glass-card rounded-3xl overflow-hidden">
+                <div class="grid grid-cols-1 lg:grid-cols-2">
+                    <div class="p-8 lg:p-12">
+                        <div class="skeleton-item h-6 w-32 mb-6"></div>
+                        <div class="skeleton-item h-12 w-3/4 mb-6"></div>
+                        <div class="skeleton-item h-4 w-full mb-2"></div>
+                        <div class="skeleton-item h-4 w-5/6 mb-2"></div>
+                        <div class="skeleton-item h-4 w-4/6 mb-8"></div>
+                    </div>
+                    <div class="relative min-h-[400px] lg:min-h-full">
+                        <div class="skeleton-item absolute inset-0"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+    
     fetch('gallery_handler.php?action=get_highlight')
         .then(response => response.json())
         .then(data => {
             if (data.success && data.highlight) {
                 renderPhotoOfDay(data.highlight);
             } else {
-                // Fallback to default photo if no highlight in database
                 renderDefaultPhotoOfDay();
             }
         })
@@ -844,9 +1372,11 @@ function loadPhotoOfDay() {
         });
 }
 
-// Render photo of the day
+// Render photo of the day with loader
 function renderPhotoOfDay(highlight) {
     const section = document.getElementById('photoOfDaySection');
+    if (!section) return;
+    
     section.innerHTML = `
         <div class="container mx-auto px-4">
             <div class="glass-card rounded-3xl overflow-hidden">
@@ -867,14 +1397,20 @@ function renderPhotoOfDay(highlight) {
                                 <i class="fas fa-camera text-white"></i>
                             </div>
                             <div>
-                                
+                                <h4 class="font-bold text-dark">Photographer's Note</h4>
+                                <p class="text-gray-600 text-sm">Captured by: James Mwangi • Luanda Constituency</p>
                             </div>
                         </div>
                     </div>
-                    <div class="relative min-h-[400px] lg:min-h-full">
+                    <div class="relative min-h-[400px] lg:min-h-full overflow-hidden">
+                        <div class="image-loader">
+                            <div class="spinner"></div>
+                        </div>
                         <img src="${highlight.image_path || 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80'}"
                               alt="Photo of the Day"
-                              class="absolute inset-0 w-full h-full object-cover">
+                              class="absolute inset-0 w-full h-full object-cover"
+                              onload="this.classList.add('fade-in'); this.previousElementSibling.classList.add('hidden');"
+                              onerror="this.previousElementSibling.classList.add('hidden');">
                         <div class="absolute inset-0 bg-gradient-to-r from-primary/80 via-transparent to-transparent lg:hidden"></div>
                         <div class="absolute bottom-4 right-4 glass-card px-4 py-2 rounded-full">
                             <span class="text-sm text-white">📸 Featured Photo</span>
@@ -886,9 +1422,11 @@ function renderPhotoOfDay(highlight) {
     `;
 }
 
-// Fallback photo of the day if database is empty
+// Fallback photo of the day
 function renderDefaultPhotoOfDay() {
     const section = document.getElementById('photoOfDaySection');
+    if (!section) return;
+    
     section.innerHTML = `
         <div class="container mx-auto px-4">
             <div class="glass-card rounded-3xl overflow-hidden">
@@ -914,10 +1452,15 @@ function renderDefaultPhotoOfDay() {
                             </div>
                         </div>
                     </div>
-                    <div class="relative min-h-[400px] lg:min-h-full">
+                    <div class="relative min-h-[400px] lg:min-h-full overflow-hidden">
+                        <div class="image-loader">
+                            <div class="spinner"></div>
+                        </div>
                         <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
                               alt="Photo of the Day"
-                              class="absolute inset-0 w-full h-full object-cover">
+                              class="absolute inset-0 w-full h-full object-cover"
+                              onload="this.classList.add('fade-in'); this.previousElementSibling.classList.add('hidden');"
+                              onerror="this.previousElementSibling.classList.add('hidden');">
                         <div class="absolute inset-0 bg-gradient-to-r from-primary/80 via-transparent to-transparent lg:hidden"></div>
                         <div class="absolute bottom-4 right-4 glass-card px-4 py-2 rounded-full">
                             <span class="text-sm text-white">📸 Featured Photo</span>
@@ -954,23 +1497,21 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Add hover effect to video containers
-    document.querySelectorAll('.shine-effect').forEach(element => {
-        element.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-5px)';
+    // Close album modal when clicking outside or escape key
+    const albumModal = document.getElementById('albumImagesModal');
+    if (albumModal) {
+        albumModal.addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeAlbumModal();
+            }
         });
 
-        element.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0)';
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && !albumModal.classList.contains('hidden')) {
+                closeAlbumModal();
+            }
         });
-    });
-
-    // Close album modal when clicking outside
-    document.getElementById('albumImagesModal').addEventListener('click', function(e) {
-        if (e.target === this) {
-            closeAlbumModal();
-        }
-    });
+    }
 });
 </script>
 </body>

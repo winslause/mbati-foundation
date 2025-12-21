@@ -511,6 +511,25 @@
 
 
 <style>
+/* Hide scrollbars while maintaining scrollability */
+::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+    background: transparent;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: transparent;
+}
+
+* {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+}
 /* Hero animations */
 @keyframes fadeInLeft {
     from {
